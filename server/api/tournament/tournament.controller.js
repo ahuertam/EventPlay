@@ -6,8 +6,8 @@ user = require('../user/user.model');
 exports.createTournament = function(req, res, next) {
 	const newTournament = new Tournament({
 		name: req.body.name,
-    _event : { event},
-    points:req.body.points
+    _event : "58bee1c605506a44446e7285",
+    type:req.body.type
 	});
 
 	newTournament.save(function(err, event) {
@@ -15,6 +15,7 @@ exports.createTournament = function(req, res, next) {
             console.log(err);
 			return res.send(500);
 		}
+			return res.send(200);
 	});
 };
 exports.listTournament = function(req, res, next) {

@@ -26,6 +26,7 @@ exports.createEvent = function(req, res, next) {
 	console.log(req.body);
 	const newEvent = new eventModel({
 		name: req.body.name,
+		description:req.body.description,
     tokenAccess:req.body.token,
 		// _creator:{user}
 	});
