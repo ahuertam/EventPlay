@@ -7,10 +7,10 @@ const tournamentSchema = new mongoose.Schema({
   type:{ type: String, require: true },
   _event : { type: Schema.Types.ObjectId, ref: 'Event'},
   completed : {type:Boolean,default: false ,required: true},
-  phase: {
-    phase:Number,
-    pairings:[]
-  },
+  // phase: {
+  //   phase:Number,
+  //   pairings:[]
+  // },
 }, {
   timestamps: {
     createdAt: "created_at",
@@ -18,4 +18,4 @@ const tournamentSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('tournament', tournamentSchema);
+module.exports = mongoose.model('Tournament', tournamentSchema);

@@ -5,21 +5,13 @@ user = require('../user/user.model');
 
 exports.listEvent = function(req, res, next) {
 	console.log(req.body);
-	eventModel.find({}, function(err, events) {
-		 	if (err) {
-		 		return res.json(err);
-		 	}
-	        return new Promise((resolve, reject) => {
-	            eventModel.populate(events, 'name')
-	                .then((_events) => {
-	                    _.forEach(events, (event) => {
-	                        event.name = _.orderBy(event.name, ['name']);
-	                    });
-	                    return res.json( events );
-	                })
-	                .catch((error) => res.status(400).json({ message: 'impossible to retrieve events' }));
-	        });
-	  	});
+	eventModel.find({})
+    .exec((err, events) => {
+      if (err) {
+        return res.send(err);
+      }
+      return res.json(events);
+		});
 };
 
 exports.createEvent = function(req, res, next) {
@@ -40,6 +32,16 @@ exports.createEvent = function(req, res, next) {
 };
 
 exports.seeEvent = function(req, res, next) {
+	console.log(req.params.id);
+	if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
+		return res.status(400).json({ message: 'Specified id is not valid' });
+	}
+	eventModel.findById(req.params.id, (err, events) => {
+			if (err) {
+				return res.send('error ' + err );
+			}
+			return res.json(events);
+		});
 
 };
 exports.closeEvent = function(req, res, next) {
@@ -47,5 +49,16 @@ exports.closeEvent = function(req, res, next) {
 };
 
 exports.removeEvent = function(req, res, next) {
+	if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    return res.status(400).json({ message: 'Specified id is not valid' });
+  }
 
+  eventModel.remove({ _id: req.params.id }, (err) => {
+    if (err) {
+      return res.send(err);
+    }
+    return res.json({
+      message: 'Event has been removed!'
+    });
+  });
 };
