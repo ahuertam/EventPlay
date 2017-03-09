@@ -12,7 +12,6 @@ const bcryptSalt     = 10;
 exports.signup = function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
-
       if (!username || !password) {
       res.status(400).json({ message: "Provide username and password" });
       return;
