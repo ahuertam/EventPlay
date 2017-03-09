@@ -1,9 +1,8 @@
 <h1><app-header></app-header></h1>
-<h2>
-  MAIN page
-</h2>
+
 
 <form *ngIf="!user">
+
   <h2> Login or Signup </h2>
   <label> Username </label>
   <input type="text" [(ngModel)]="formInfo.username" name="username"/>
@@ -15,19 +14,21 @@
   <button (click)="signup()"> signup </button>
 </form>
 
+<div class="container" *ngIf="!user">
+<h2>
+    <app-landing></app-landing>
+</h2>
+</div>
+
 <div *ngIf="user">
-  <h2> You are now logged in as {{ user.username }}!! </h2>
-  <p> Here's the user object </p>
-  <pre> {{ user | json }} </pre>
+    <button (click)="logout()"> logout </button>
+  <h2> Welcome {{ user.username }}!! </h2>
+  <app-board></app-board>
 
 
-  <p *ngIf="personal"> Here's some data fetched from a protected API </p>
-  <pre> {{ privateData | json }} </pre>
-  <button (click)="logout()"> logout </button>
-  <button (click)="getPrivateData()"> Get private data </button>
 </div>
 
 <p class="error"> {{ error }} </p>
-<router-outlet></router-outlet>
+  <!-- <router-outlet></router-outlet> -->
 
 <h2><app-footer></app-footer></h2>

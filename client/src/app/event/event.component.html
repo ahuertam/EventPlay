@@ -1,5 +1,19 @@
+<div class="container">
+  <button (click)="openForm()">Create Event form</button>
+  <button (click)="openList()">See Events</button>
 
-  <h1> Events list </h1>
+  <div class=createEvent  *ngIf="isInputDisabled ===false ">
+    <h2> Create Event </h2>
+    <label for="name" >Name</label>
+    <input type="text"/>
+    <br>
+    <label for="Campo2"> campo2</label>
+    <input type="text"/>
+    <br>
+    <button (click)="addFood()">Add!!</button>
+  </div>
+  <div  *ngIf="listdisabled ===false ">
+    <h2> Events list </h2>
     <div *ngIf="events" >
       <p>{{events[0].name}}</p>
       <div *ngFor="let e of events">
@@ -10,3 +24,5 @@
         <h4> {{ e.tag }} </h4>
       </div>
     </div>
+  </div>
+</div>

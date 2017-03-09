@@ -9,7 +9,19 @@ import { OwnedeventsService } from '../ownedevents.service';
 })
 export class EventComponent implements OnInit {
   events;
+  isInputDisabled: boolean = true;
+  listdisabled: boolean = true;
   constructor(private event: OwnedeventsService) { }
+
+  openForm(){
+    this.isInputDisabled = !this.isInputDisabled;
+    this.listdisabled = true;
+  }
+
+  openList(){
+    this.isInputDisabled = true;
+    this.listdisabled = !this.listdisabled;
+  }
 
   ngOnInit() {
     this.event.getList()

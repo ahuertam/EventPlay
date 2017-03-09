@@ -38,9 +38,4 @@ export class SessionService {
       .catch((err) => this.handleError(err));
   }
 
-  getPrivateData() {
-    return this.http.get(`${this.BASE_URL}/personal`)
-      .map(res => res.json())
-      .catch(this.handleError);
-  }
 }
