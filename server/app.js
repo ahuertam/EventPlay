@@ -4,10 +4,18 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const mongoose = require ("mongoose");
+
 const index = require('./routes/index');
-const users = require('./routes/users');
 const cors = require('cors');
+//Session control
+const authController  = require("./api/user/index");
+const session         = require("express-session");
+const passport        = require("passport");
+const LocalStrategy  = require('passport-local').Strategy;
+const User           = require('./api/user/user.model');
+const bcrypt       = require("bcrypt");
+
+const mongoose = require ("mongoose");
 
 const app = express();
 
@@ -29,9 +37,49 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 require('./routes')(app);
 // app.use('/', index);
-// app.use('/users', users);
 
+module.exports = function (passport) {
 
+  passport.use(new LocalStrategy((username, password, next) => {
+    User.findOne({ username }, (err, user) => {
+      if (err) {
+        return next(err);
+      }
+
+      if (!user) {
+        return next(null, false, { message: "Incorrect username" });
+      }
+
+      if (!bcrypt.compareSync(password, user.password)) {
+        return next(null, false, { message: "Incorrect password" });
+      }
+
+      return next(null, user);
+    });
+  }));
+
+  passport.serializeUser((user, cb) => {
+    cb(null, user.id);
+  });
+
+  passport.deserializeUser((id, cb) => {
+    User.findOne({ "_id": id }, (err, user) => {
+      if (err) { return cb(err); }
+      cb(null, user);
+    });
+  });
+};
+
+app.use(session({
+  secret: "passport-local-strategy",
+  resave: true,
+  saveUninitialized: true,
+  cookie : { httpOnly: true, maxAge: 2419200000 }
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/', index);
 
 
 // catch 404 and forward to error handler

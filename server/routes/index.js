@@ -2,6 +2,7 @@ var path = require('path');
 
 module.exports = function(app) {
 
+  app.use('/', require('../api/user'));
   app.use('/api/event', require('../api/event'));
   app.use('/api/event/tournament', require('../api/tournament'));
   app.use('/api/event/participant', require('../api/participant'));

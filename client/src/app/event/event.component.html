@@ -1,0 +1,12 @@
+
+  <h1> Events list </h1>
+    <div *ngIf="events" >
+      <p>{{events[0].name}}</p>
+      <div *ngFor="let e of events">
+        <img [src]="e.imgUrl" />
+        <h3> {{ e.name }} </h3>
+        <h3> {{ e.active }} </h3>
+        <p> {{ e.tokenAccess }} </p>
+        <h4> {{ e.tag }} </h4>
+      </div>
+    </div>

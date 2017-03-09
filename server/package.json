@@ -6,6 +6,7 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "body-parser": "~1.16.0",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.1",
@@ -13,9 +14,12 @@
     "dotenv": "^4.0.0",
     "ejs": "~2.5.5",
     "express": "~4.14.1",
+    "express-session": "^1.15.1",
     "lodash": "^4.17.4",
     "mongoose": "^4.8.6",
     "morgan": "~1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "q": "^1.4.1",
     "serve-favicon": "~2.3.2",
     "tourney": "^1.2.1"
