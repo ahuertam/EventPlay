@@ -20,6 +20,16 @@ const mongoose = require ("mongoose");
 const app = express();
 
 app.use(cors());
+var whitelist = [
+    'http://localhost:4200',
+];
+var corsOptions = {
+    origin: function(origin, callback){
+        var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+        callback(null, originIsWhitelisted);
+    },
+    credentials: true
+};
 
 mongoose.connect('mongodb://localhost:27017/ihfinalproyect');
 

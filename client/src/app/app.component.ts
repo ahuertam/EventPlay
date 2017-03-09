@@ -15,6 +15,7 @@ import { SessionService } from "./session.service";
     };
     error: string;
     privateData: any = '';
+    isInputDisabled: boolean = true;
 
     constructor(private session: SessionService) { }
 
@@ -23,6 +24,9 @@ import { SessionService } from "./session.service";
         .subscribe(
           (user) => this.successCb(user)
         );
+    }
+    openForm(){
+      this.isInputDisabled = !this.isInputDisabled;
     }
 
     login() {
@@ -49,13 +53,6 @@ import { SessionService } from "./session.service";
         );
     }
 
-    getPrivateData() {
-      this.session.getPrivateData()
-        .subscribe(
-          (data) => this.privateData = data,
-          (err) => this.error = err
-        );
-    }
 
     errorCb(err) {
       this.error = err;

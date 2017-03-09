@@ -14,14 +14,14 @@ export class SessionService {
   }
 
   signup(user) {
-    return this.http.post(`${this.BASE_URL}/signup`, user)
+    return this.http.post(`${this.BASE_URL}/signup`, user) // Use ,{withCredentials:true}
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   login(user) {
     console.log(user);
-    return this.http.post(`${this.BASE_URL}/login`, user)
+    return this.http.post(`${this.BASE_URL}/login`, user)// Use 
       .map(res => res.json())
       .catch(this.handleError);
   }

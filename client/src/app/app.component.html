@@ -1,19 +1,20 @@
 <h1><app-header></app-header></h1>
 
+<div class="container" *ngIf="!user" >
+  <button class="btn btn-lg btn-primary btn-block" (click)="openForm()">Acess now!</button>
+  <form class="form-signin" *ngIf="isInputDisabled ===false ">    <!-- *ngIf="!user" -->
+      <h2 class="form-signin-heading"> Login or Signup </h2>
+      <label class="sr-only"> Username </label>
+      <input class="form-control" placeholder="USERNAME"  type="text" [(ngModel)]="formInfo.username" name="username"/>
+      <br>
+      <label class="sr-only"> Password </label>
+      <input class="form-control" placeholder="PASSWORD" type="password" [(ngModel)]="formInfo.password" name="password"/>
 
-<form *ngIf="!user">
-
-  <h2> Login or Signup </h2>
-  <label> Username </label>
-  <input type="text" [(ngModel)]="formInfo.username" name="username"/>
-  <br>
-  <label> Password </label>
-  <input type="password" [(ngModel)]="formInfo.password" name="password"/>
-
-  <button (click)="login()"> login </button>
-  <button (click)="signup()"> signup </button>
-</form>
-
+      <button class="btn btn-lg btn-primary btn-block" (click)="login()"> Login </button>
+      <button class="btn btn-lg btn-primary btn-block" (click)="signup()"> Signup </button>
+      <p *ngIf="error" class="alert alert-danger" role="alert"> {{ error }} </p>
+    </form>
+</div>
 <div class="container" *ngIf="!user">
 <h2>
     <app-landing></app-landing>
@@ -28,7 +29,7 @@
 
 </div>
 
-<p class="error"> {{ error }} </p>
+
   <!-- <router-outlet></router-outlet> -->
 
 <h2><app-footer></app-footer></h2>

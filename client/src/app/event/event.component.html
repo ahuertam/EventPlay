@@ -1,23 +1,32 @@
 <div class="container">
   <button (click)="openForm()">Create Event form</button>
   <button (click)="openList()">See Events</button>
-
-  <div class=createEvent  *ngIf="isInputDisabled ===false ">
-    <h2> Create Event </h2>
-    <label for="name" >Name</label>
-    <input type="text"/>
-    <br>
-    <label for="Campo2"> campo2</label>
-    <input type="text"/>
-    <br>
-    <button (click)="addFood()">Add!!</button>
-  </div>
+  <form class="form-event" *ngIf="isInputDisabled ===false ">
+      <h2> Create Event </h2>
+      <label for="name" >Name</label>
+      <br>
+      <input type="text" [(ngModel)]="formInfo.name"/>
+      <br>
+      <label for="tokenAccess" > Password acceso</label>
+      <br>
+      <input type="text" [(ngModel)]="formInfo.tokenAccess">
+      <br>
+      <label for="description" > Descripcion</label>
+      <br>
+      <input type="text" [(ngModel)]="formInfo.description">
+      <br>
+      <label for="tag" > TAGS</label>
+      <br>
+      <input type="text" [(ngModel)]="formInfo.tag">
+      <br>
+      <button class="btn btn-lg btn-primary btn-block" (click)="add()">Add!!</button>
+  </form>
   <div  *ngIf="listdisabled ===false ">
     <h2> Events list </h2>
     <div *ngIf="events" >
       <p>{{events[0].name}}</p>
       <div *ngFor="let e of events">
-        <img [src]="e.imgUrl" />
+        <button (click)="edit(e._id)">EDIT</button>
         <h3> {{ e.name }} </h3>
         <h3> {{ e.active }} </h3>
         <p> {{ e.tokenAccess }} </p>
@@ -25,4 +34,15 @@
       </div>
     </div>
   </div>
+
+<div  *ngIf="individualDisabled===false">
+  <button>Add Participant</button>
+  <button (click)="openList()">Back</button>
+    <br>
+  <img src="{{ individual.imgUrl }}">
+  <h3> {{ individual.name }} </h3>
+  <h3> {{ individual.active }} </h3>
+  <p> {{ individual.tokenAccess }} </p>
+  <h4> {{ e.tag }} </h4>
+</div>
 </div>
