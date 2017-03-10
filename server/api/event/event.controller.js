@@ -15,7 +15,8 @@ exports.listEvent = function(req, res, next) {
 };
 
 exports.createEvent = function(req, res, next) {
-	console.log(req.body);
+	// console.log(req.body);
+	console.log("esto es create event");
 	const newEvent = new eventModel({
 		name: req.body.name,
 		description:req.body.description,

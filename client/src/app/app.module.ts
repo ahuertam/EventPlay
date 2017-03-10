@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AlertModule } from 'ng2-bootstrap';
 //end Modules
 
 ///Components
@@ -14,6 +13,7 @@ import { EventComponent } from './event/event.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { TournamentComponent } from './tournament/tournament.component';
 import { BoardComponent } from './board/board.component';
+import { OwnedeventsService} from './ownedevents.service';
 ///END Components
 
 //Routes
@@ -38,13 +38,12 @@ export const routes: Routes = [
     LandingComponent
   ],
   imports: [
-    AlertModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [OwnedeventsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

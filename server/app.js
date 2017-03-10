@@ -19,7 +19,6 @@ const mongoose = require ("mongoose");
 
 const app = express();
 
-app.use(cors());
 var whitelist = [
     'http://localhost:4200',
 ];
@@ -30,6 +29,8 @@ var corsOptions = {
     },
     credentials: true
 };
+app.use(cors(corsOptions));
+
 
 mongoose.connect('mongodb://localhost:27017/ihfinalproyect');
 

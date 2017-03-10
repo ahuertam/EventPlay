@@ -6,8 +6,8 @@ user = require('../user/user.model');
 exports.createParticipant = function(req, res, next) {
 	const newParticipant = new Participant({
 		name: req.body.name,
-    _event : req.params.event,
-    points:req.body.points
+    points:req.body.points,
+		_event : req.params.event
 	});
 
 	newParticipant.save(function(err, event) {

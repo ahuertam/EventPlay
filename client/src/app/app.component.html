@@ -22,14 +22,9 @@
 </div>
 
 <div *ngIf="user">
-    <button (click)="logout()"> logout </button>
+    <button class="btn btn-md btn-primary btn-block" (click)="logout()"> logout </button>
   <h2> Welcome {{ user.username }}!! </h2>
-  <app-board></app-board>
-
-
 </div>
-
-
-  <!-- <router-outlet></router-outlet> -->
+  <router-outlet></router-outlet>
 
 <h2><app-footer></app-footer></h2>

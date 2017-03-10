@@ -9,16 +9,21 @@ import { OwnedeventsService } from '../ownedevents.service';
 })
 export class EventComponent implements OnInit {
   events;
+  participantsList :any;
   isInputDisabled: boolean = true;
   listdisabled: boolean = true;
   individualDisabled:boolean = true;
-  formInfo = {
+  eventInfo = {
     name: '',
-    tokenAccess: '',
     description: '',
-    tag: '',
+    tokenAccess: ''
   };
-  constructor(private event: OwnedeventsService) { }
+  formParticipant = {
+    nameParticipant: '',
+    eventParticipant: '',
+  };
+
+  constructor(public event: OwnedeventsService) { }
 
   ngOnInit() {
     this.event.getList()
@@ -26,42 +31,56 @@ export class EventComponent implements OnInit {
         console.log(events);
         this.events = events;
       });
+
   }
 
   add(){
-    this.event.create(this.formInfo);
+    this.event.create(this.eventInfo).subscribe((e) => console.log("Event created"));
   }
-  individual(id) {
+
+  addParticipant(id){
     console.log(id);
+    console.log(this.formParticipant);
+      this.event.addParticipant(id,this.formParticipant).subscribe((e) => console.log("Event created"));
+
+  }
+
+  individual(id) {
     this.event.get(id)
     .subscribe((individual) => {
-      console.log(individual);
       this.individual = individual;
       this.tagIndividual();
+      this.event.getAllinscriptions(id)
+        .subscribe(
+          (participantsList) => {
+          this.participantsList = participantsList;
+          });
     });
 
   }
   tagIndividual(){
     this.individualDisabled = !this.individualDisabled;
   }
+
   openForm(){
-    this.individualDisabled = true;
-    this.listdisabled = true;
+    console.log("openform")
+    if (this.listdisabled ==false){this.listdisabled = !this.listdisabled;}
+    if (this.individualDisabled ==false){this.individualDisabled = !this.individualDisabled;}
     this.isInputDisabled = !this.isInputDisabled;
   }
 
   edit(id){
-    console.log(id);
-    this.isInputDisabled = true;
-    this.listdisabled = true;
+     console.log("edit");
+    if (this.listdisabled ==false){this.listdisabled = !this.listdisabled;}
     this.individual(id);
   }
   openList(){
-    this.isInputDisabled = true;
-    this.individualDisabled = true;
+    if (this.individualDisabled ==false){this.individualDisabled = !this.individualDisabled;}
     this.listdisabled = !this.listdisabled;
   }
 
-
+  remove(id){
+    this.event.remove(id).subscribe((e) => console.log("Event Erased"));
+  }
 
 }

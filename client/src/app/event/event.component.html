@@ -1,48 +1,67 @@
 <div class="container">
-  <button (click)="openForm()">Create Event form</button>
-  <button (click)="openList()">See Events</button>
-  <form class="form-event" *ngIf="isInputDisabled ===false ">
-      <h2> Create Event </h2>
-      <label for="name" >Name</label>
-      <br>
-      <input type="text" [(ngModel)]="formInfo.name"/>
-      <br>
-      <label for="tokenAccess" > Password acceso</label>
-      <br>
-      <input type="text" [(ngModel)]="formInfo.tokenAccess">
-      <br>
-      <label for="description" > Descripcion</label>
-      <br>
-      <input type="text" [(ngModel)]="formInfo.description">
-      <br>
-      <label for="tag" > TAGS</label>
-      <br>
-      <input type="text" [(ngModel)]="formInfo.tag">
-      <br>
-      <button class="btn btn-lg btn-primary btn-block" (click)="add()">Add!!</button>
-  </form>
-  <div  *ngIf="listdisabled ===false ">
-    <h2> Events list </h2>
-    <div *ngIf="events" >
-      <p>{{events[0].name}}</p>
-      <div *ngFor="let e of events">
-        <button (click)="edit(e._id)">EDIT</button>
-        <h3> {{ e.name }} </h3>
-        <h3> {{ e.active }} </h3>
-        <p> {{ e.tokenAccess }} </p>
-        <h4> {{ e.tag }} </h4>
-      </div>
-    </div>
-  </div>
+  <button class="btn btn-lg btn-primary btn-block" (click)="openForm()">Create Event form</button>
+  <article class="" *ngIf="isInputDisabled ===false ">
+    <form class="form-event" >
+        <h2> Create Event </h2>
+        <label for="name" >Name</label>
+        <br>
+        <input type="text" name="name" [(ngModel)]="eventInfo.name"/>
+        <br>
+        <label for="tokenAccess" > Password acceso</label>
+        <br>
+        <input type="text" name="tokenAccess" [(ngModel)]="eventInfo.tokenAccess">
+        <br>
+        <label for="description" > Descripcion</label>
+        <br>
+        <input type="text" name="description" [(ngModel)]="eventInfo.description">
+        <br>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" (click)="add()">Add!!</button>
+    </form>
+  </article>
 
-<div  *ngIf="individualDisabled===false">
-  <button>Add Participant</button>
-  <button (click)="openList()">Back</button>
-    <br>
-  <img src="{{ individual.imgUrl }}">
-  <h3> {{ individual.name }} </h3>
-  <h3> {{ individual.active }} </h3>
-  <p> {{ individual.tokenAccess }} </p>
-  <h4> {{ e.tag }} </h4>
-</div>
+  <button  class="btn btn-lg btn-primary btn-block" (click)="openList()">See Events</button>
+  <article class="" *ngIf="listdisabled ===false ">
+      <h2> Events list </h2>
+      <div *ngIf="events" >
+        <p>______________________________________________</p>
+        <p>{{events[0].name}}</p>
+        <div *ngFor="let e of events">
+          <button (click)="edit(e._id)">EDIT</button>
+          <button (click)="remove(e._id)">REMOVE</button>
+          <h3> {{ e.name }} </h3>
+          <h3> {{ e.active }} </h3>
+          <p>______________________________________________</p>
+        </div>
+      </div>
+  </article>
+  <article *ngIf="individualDisabled===false">
+    <div  >
+      <br>
+      <img src="{{ individual.imgUrl }}">
+      <h3> {{ individual.name }} </h3>
+      <h3> {{ individual.state }} </h3>
+      <p> {{ individual.description }} </p>
+      <ul *ngFor="let participant of participantsList">
+        <li> {{ participant.name }} </li>
+      </ul>
+      <p>______________________________________________</p>
+    </div>
+    <form class="form-event">
+        <h2> Add Participant </h2>
+        <label for="name" >Name</label>
+        <br>
+        <input type="text" name="name" [(ngModel)]="formParticipant.name"/>
+        <br>
+        <label for="points" > Points</label>
+        <br>
+        <input type="text" name="points" [(ngModel)]="formParticipant.points">
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" (click)="addParticipant(individual._id)" >Add!!</button>
+    </form>
+</article>
+<article class=""  *ngIf="individualDisabled===false">
+      <app-leaderboard></app-leaderboard>
+      <app-tournament></app-tournament>
+</article>
 </div>
