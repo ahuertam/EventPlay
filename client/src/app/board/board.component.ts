@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionService } from '../session.service';
 
 @Component({
   selector: 'app-board',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
-
-  constructor() { }
+  user:any;
+  constructor(public session: SessionService) {
+    this.session.getLoginEvetEmitter()
+      .subscribe((user) => this.user=user);
+     }
 
   ngOnInit() {
+    // this.session
+    // .isLoggedIn()
+    // .subscribe((user) => {
+    //   this.user = user;
+    //   console.log("Ready");
+    //   console.log(user);
+    // });
+
   }
 
 }

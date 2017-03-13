@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -10,6 +10,12 @@ import { Observable } from 'rxjs/Rx';
 export class OwnedeventsService {
   BASE_URL: string = 'http://localhost:3000';
   options: Object = {withCredentials:true};
+  EventsEmitter =new EventEmitter();
+  EventOnlyEmitter =new EventEmitter();
+  ParticipantsEmitter =new EventEmitter();
+  EventList:any;
+  IndividualEvent:any;
+
   constructor(private http: Http) {}
 
   handleError(e) {
@@ -18,13 +24,17 @@ export class OwnedeventsService {
 
 /////////////////////////GET
   getList() {
-    return this.http.get(`${this.BASE_URL}/api/event`, this.options)
+    this.EventList= this.http.get(`${this.BASE_URL}/api/event`, this.options)
       .map((res) => res.json());
+      this.EventsEmitter.emit(this.EventList);
+      return this.EventList;
   }
 
   get(id) {
     console.log("service ID" + id);
-    return this.http.get(`${this.BASE_URL}/api/event/${id}`, this.options).map((res) => res.json());
+    this.IndividualEvent=this.http.get(`${this.BASE_URL}/api/event/${id}`, this.options).map((res) => res.json());
+    this.EventOnlyEmitter.emit(this.IndividualEvent);
+    return this.IndividualEvent;
   }
         ////PARTICIPANT
 
@@ -51,5 +61,12 @@ addParticipant(id,obj){
     return this.http.delete(`${this.BASE_URL}/api/event/${id}`, this.options)
       .map((res) => res.json());
   }
+
+  removeParticipant(participant) {
+    console.log(participant);
+    return this.http.delete(`${this.BASE_URL}/api/event/${participant}`, this.options)
+      .map((res) => res.json());
+  }
+
 
 }

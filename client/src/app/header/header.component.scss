@@ -1,6 +1,4 @@
-h1{
-    border: 2px solid blue;
-}
+
 .inner {
     padding: 30px;
 }
@@ -12,8 +10,15 @@ img{
   width: auto;
 }
 .header{
-  height: 400%;
+  display: table;
+  position: relative;
   width: 100%;
+  height: 100%;
+  //i68.tinypic.com/zu051k.jpg //[IMG][/IMG]http://i65.tinypic.com/wu2r6a.png
+  background: url("http://i66.tinypic.com/2ynntad.jpg") no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: 99%;
   color: #fff;
       text-align: center;
       text-shadow: 0 1px 3px rgba(0,0,0,.5);

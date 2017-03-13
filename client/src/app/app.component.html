@@ -1,30 +1,33 @@
-<h1><app-header></app-header></h1>
+<app-header></app-header>
 
-<div class="container" *ngIf="!user" >
-  <button class="btn btn-lg btn-primary btn-block" (click)="openForm()">Acess now!</button>
-  <form class="form-signin" *ngIf="isInputDisabled ===false ">    <!-- *ngIf="!user" -->
+<div class="container" *ngIf="!user">
+  <article class="login">
+
+    <button class="btn btn-lg btn-primary " (click)="openForm()">Acess now!</button>
+    <form class="form-signin" *ngIf="isInputDisabled ===false ">
+      <!-- *ngIf="!user" -->
       <h2 class="form-signin-heading"> Login or Signup </h2>
+      <br>
       <label class="sr-only"> Username </label>
-      <input class="form-control" placeholder="USERNAME"  type="text" [(ngModel)]="formInfo.username" name="username"/>
+      <input class="form-control" placeholder="USERNAME" type="text" [(ngModel)]="formInfo.username" name="username" />
       <br>
       <label class="sr-only"> Password </label>
-      <input class="form-control" placeholder="PASSWORD" type="password" [(ngModel)]="formInfo.password" name="password"/>
-
-      <button class="btn btn-lg btn-primary btn-block" (click)="login()"> Login </button>
-      <button class="btn btn-lg btn-primary btn-block" (click)="signup()"> Signup </button>
+      <input class="form-control" placeholder="PASSWORD" type="password" [(ngModel)]="formInfo.password" name="password" />
+      <br>
+      <button class="btn btn-lg btn-block" (click)="login()"> Login </button>
+      <button class="btn btn-lg  btn-block" (click)="signup()"> Signup </button>
       <p *ngIf="error" class="alert alert-danger" role="alert"> {{ error }} </p>
     </form>
+  </article>
+  <app-landing></app-landing>
 </div>
-<div class="container" *ngIf="!user">
-<h2>
-    <app-landing></app-landing>
-</h2>
-</div>
+
 
 <div *ngIf="user">
-    <button class="btn btn-md btn-primary btn-block" (click)="logout()"> logout </button>
-  <h2> Welcome {{ user.username }}!! </h2>
+  <button class="btn btn-md btn-primary btn-block" (click)="logout()"> logout </button>
+  <!-- <h2> Welcome {{ user.username }}!! </h2> -->
 </div>
-  <router-outlet></router-outlet>
 
-<h2><app-footer></app-footer></h2>
+<router-outlet></router-outlet>
+
+<app-footer></app-footer>

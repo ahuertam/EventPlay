@@ -72,10 +72,10 @@ exports.signup = function(req, res, next) {
 
   exports.loggedIn = function(req, res, next) {
     if(req.isAuthenticated()) {
-    return res.status(200).json(req.user);
+      return res.status(200).json(req.user);
     }
 
-    return res.status(403).json({ message: 'Unauthorized' });
+      return res.status(403).json({ message: 'Unauthorized' });
       };
 
   exports.personal = function(req, res, next) {

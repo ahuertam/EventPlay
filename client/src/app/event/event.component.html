@@ -1,23 +1,27 @@
-<div class="container">
+<div class="container container-fluid">
   <button class="btn btn-lg btn-primary btn-block" (click)="openForm()">Create Event form</button>
   <article class="" *ngIf="isInputDisabled ===false ">
-    <form class="form-event" >
-        <h2> Create Event </h2>
-        <label for="name" >Name</label>
-        <br>
-        <input type="text" name="name" [(ngModel)]="eventInfo.name"/>
-        <br>
-        <label for="tokenAccess" > Password acceso</label>
-        <br>
-        <input type="text" name="tokenAccess" [(ngModel)]="eventInfo.tokenAccess">
-        <br>
-        <label for="description" > Descripcion</label>
-        <br>
-        <input type="text" name="description" [(ngModel)]="eventInfo.description">
-        <br>
-        <br>
-        <button class="btn btn-lg btn-primary btn-block" (click)="add()">Add!!</button>
-    </form>
+    <div class="row">
+      <div class="col-xs-5">
+        <form class="form-event" >
+            <h2> Create Event </h2>
+            <label for="name" >Name</label>
+            <br>
+            <input type="text" name="name" [(ngModel)]="eventInfo.name"/>
+            <br>
+            <label for="tokenAccess" > Password acceso</label>
+            <br>
+            <input type="text" name="tokenAccess" [(ngModel)]="eventInfo.tokenAccess">
+            <br>
+            <label for="description" > Descripcion</label>
+            <br>
+            <input type="text" name="description" [(ngModel)]="eventInfo.description">
+            <br>
+            <br>
+            <button class="btn btn-lg btn-primary btn-block" (click)="add()">Add!!</button>
+        </form>
+      </div>
+    </div>
   </article>
 
   <button  class="btn btn-lg btn-primary btn-block" (click)="openList()">See Events</button>
@@ -35,15 +39,21 @@
         </div>
       </div>
   </article>
-  <article *ngIf="individualDisabled===false">
-    <div  >
+  <div *ngIf="EventOnlyList">
+    <p>PRUEBA EventOnlyList</p>
+    {{EventOnlyList.name}}
+  </div>
+  <article *ngIf="individualDisabled===false ">
+    <div >
       <br>
       <img src="{{ individual.imgUrl }}">
       <h3> {{ individual.name }} </h3>
       <h3> {{ individual.state }} </h3>
       <p> {{ individual.description }} </p>
-      <ul *ngFor="let participant of participantsList">
-        <li> {{ participant.name }} </li>
+      <ul *ngFor="let participant of participantsListEvent">
+        <li> {{ participant.name }} <h2>{{ participant.points }} </h2>
+          <button class="btn btn-lg btn-primary btn-block" (click)="removeParticipant(individual._id,participant._id)" >Remove!!</button>
+        </li>
       </ul>
       <p>______________________________________________</p>
     </div>

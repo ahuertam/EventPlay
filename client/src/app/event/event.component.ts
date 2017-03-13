@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter } from '@angular/core';
 import { OwnedeventsService } from '../ownedevents.service';
+import { SessionService } from '../session.service';
 
 @Component({
   selector: 'app-event',
@@ -9,7 +10,11 @@ import { OwnedeventsService } from '../ownedevents.service';
 })
 export class EventComponent implements OnInit {
   events;
+  EventList:any;
+  EventOnlyList:any;
+  user:any;
   participantsList :any;
+  participantsListEvent:any;
   isInputDisabled: boolean = true;
   listdisabled: boolean = true;
   individualDisabled:boolean = true;
@@ -23,7 +28,9 @@ export class EventComponent implements OnInit {
     eventParticipant: '',
   };
 
-  constructor(public event: OwnedeventsService) { }
+  constructor(public event: OwnedeventsService,public session: SessionService) {
+     event.getList().subscribe((EventList) => {this.EventList = EventList});
+   }
 
   ngOnInit() {
     this.event.getList()
@@ -31,7 +38,8 @@ export class EventComponent implements OnInit {
         console.log(events);
         this.events = events;
       });
-
+      this.session.getLoginEvetEmitter()
+        .subscribe((user) => this.user=user);
   }
 
   add(){
@@ -51,13 +59,28 @@ export class EventComponent implements OnInit {
       this.individual = individual;
       this.tagIndividual();
       this.event.getAllinscriptions(id)
-        .subscribe(
-          (participantsList) => {
-          this.participantsList = participantsList;
-          });
+        // .subscribe(
+        //   (participantsList) => {
+        //     console.log(participantsList);
+        //   this.participantsList = participantsList;
+        //   });
     });
-
+    this.event.get(id).subscribe((EventOnlyList) => {this.EventOnlyList = EventOnlyList});
+    console.log("individual");
+    console.log(this.EventOnlyList);
+    this.openParticipantList(id);
   }
+
+  openParticipantList(id){
+    this.event.getAllinscriptions(id)
+      .subscribe(
+        (participantsListEvent) => {
+          console.log(participantsListEvent);
+        this.participantsListEvent = participantsListEvent;
+        });
+    }
+
+
   tagIndividual(){
     this.individualDisabled = !this.individualDisabled;
   }
@@ -67,6 +90,7 @@ export class EventComponent implements OnInit {
     if (this.listdisabled ==false){this.listdisabled = !this.listdisabled;}
     if (this.individualDisabled ==false){this.individualDisabled = !this.individualDisabled;}
     this.isInputDisabled = !this.isInputDisabled;
+
   }
 
   edit(id){
@@ -77,10 +101,17 @@ export class EventComponent implements OnInit {
   openList(){
     if (this.individualDisabled ==false){this.individualDisabled = !this.individualDisabled;}
     this.listdisabled = !this.listdisabled;
+    console.log(this.EventList);
   }
+
 
   remove(id){
     this.event.remove(id).subscribe((e) => console.log("Event Erased"));
+  }
+
+  removeParticipant(participant){
+    console.log(participant);
+    this.event.removeParticipant(participant).subscribe((e) => console.log("participant Erased"));
   }
 
 }

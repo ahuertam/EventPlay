@@ -13,8 +13,12 @@ import { EventComponent } from './event/event.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { TournamentComponent } from './tournament/tournament.component';
 import { BoardComponent } from './board/board.component';
-import { OwnedeventsService} from './ownedevents.service';
 ///END Components
+
+//SERVICES
+import { OwnedeventsService} from './ownedevents.service';
+
+//SERVICES
 
 //Routes
 import { Routes,RouterModule } from '@angular/router';

@@ -27,6 +27,7 @@ import { SessionService } from "./session.service";
     }
     openForm(){
       this.isInputDisabled = !this.isInputDisabled;
+
     }
 
     login() {

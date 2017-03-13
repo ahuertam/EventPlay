@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Rx';
 export class SessionService {
   BASE_URL: string = 'http://localhost:3000';
   options: Object = {withCredentials:true};
+  emitter =new EventEmitter();
 
   constructor(private http: Http) { }
 
@@ -25,7 +26,11 @@ export class SessionService {
     console.log(user);
     return this.http.post(`${this.BASE_URL}/login`, user, this.options)// Use
       .map(res => res.json())
+      .map(user => {this.emitter.emit(user);return user})
       .catch(this.handleError);
+  }
+  getLoginEvetEmitter(){
+    return this.emitter;
   }
 
   logout() {

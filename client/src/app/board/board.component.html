@@ -1,4 +1,6 @@
-<div class="container">
+
+<div class="container" *ngIf="user">
     board
+    <h2>Hello {{user.username}}</h2>
     <app-event></app-event>
 </div>

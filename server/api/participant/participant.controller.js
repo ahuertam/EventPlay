@@ -10,7 +10,7 @@ exports.createParticipant = function(req, res, next) {
 		_event : req.params.event
 	});
 
-	newParticipant.save(function(err, event) {
+	newParticipant.save(function(err, participant) {
 		if(err) {
             console.log(err);
 			return res.send(500);
@@ -18,11 +18,12 @@ exports.createParticipant = function(req, res, next) {
 			return res.send(200);
 	});
 };
+
 exports.removeParticipant = function(req, res, next) {
 	if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
 		return res.status(400).json({ message: 'Specified id is not valid' });
 	}
-	Participant.remove({ _id: req.params.id }, (err) => {
+	Participant.remove({_id: req.params.id }, (err) => {
 		if (err) {
 			return res.send(err);
 		}
@@ -34,7 +35,7 @@ exports.removeParticipant = function(req, res, next) {
 
 exports.listParticipants = function(req, res, next) {
 	console.log(req.body);
-	Participant.find({})
+	Participant.find({_event:req.params.event})
     .exec((err, participants) => {
       if (err) {
         return res.send(err);
