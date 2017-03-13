@@ -10,12 +10,9 @@ import { Observable } from 'rxjs/Rx';
 export class OwnedeventsService {
   BASE_URL: string = 'http://localhost:3000';
   options: Object = {withCredentials:true};
-  EventsEmitter =new EventEmitter();
-  EventOnlyEmitter =new EventEmitter();
-  ParticipantsEmitter =new EventEmitter();
-  EventList:any;
-  IndividualEvent:any;
-
+  EventListEmitter =new EventEmitter();
+  ParticipantListEmitter =new EventEmitter();
+  // EventAloneEmitter= new EventEmitter();
   constructor(private http: Http) {}
 
   handleError(e) {
@@ -24,23 +21,25 @@ export class OwnedeventsService {
 
 /////////////////////////GET
   getList() {
-    this.EventList= this.http.get(`${this.BASE_URL}/api/event`, this.options)
-      .map((res) => res.json());
-      this.EventsEmitter.emit(this.EventList);
-      return this.EventList;
+    return this.http.get(`${this.BASE_URL}/api/event`, this.options)
+      .map((res) => res.json())
+      .map((EventList) => {this.EventListEmitter.emit(EventList);return EventList});
   }
 
   get(id) {
     console.log("service ID" + id);
-    this.IndividualEvent=this.http.get(`${this.BASE_URL}/api/event/${id}`, this.options).map((res) => res.json());
-    this.EventOnlyEmitter.emit(this.IndividualEvent);
-    return this.IndividualEvent;
+    return this.http.get(`${this.BASE_URL}/api/event/${id}`, this.options)
+    .map((res) => res.json());
+    // .map((EventAlone) => {this.EventListEmitter.emit(EventAlone);return EventAlone});
+
   }
         ////PARTICIPANT
 
 getAllinscriptions(id) {
   return this.http.get(`${this.BASE_URL}/api/event/participant/${id}`, this.options)
-  .map((res) => res.json());
+  .map((res) => res.json())
+  .map((ParticipantList) => {this.ParticipantListEmitter.emit(ParticipantList);return ParticipantList});
+  ;
 }
 
 addParticipant(id,obj){
@@ -60,6 +59,7 @@ addParticipant(id,obj){
   remove(id) {
     return this.http.delete(`${this.BASE_URL}/api/event/${id}`, this.options)
       .map((res) => res.json());
+
   }
 
   removeParticipant(participant) {

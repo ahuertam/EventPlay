@@ -1,11 +1,29 @@
 <div class="container">
+  <button type="button" name="button" (click)="showParticipants()">PRUEBALO</button>
   <p>
     this is the leaderBoard
-    <!-- <tr ng-repeat="participant in participants">
+    <!-- <tr ng-repeat="participant in participantsList">
     <td>#{{$index + 1}}</td>
     <td>{{participant.name}}</td>
     <td>{{participant.points}}</td>
   </tr> -->
   </p>
+  <table>
+    <tr>
+      <th>Position</th>
+      <th>Participant</th>
+      <th>Points</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Alex</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Marc</td>
+      <td>90</td>
+    </tr>
+  </table>
 
 </div>

@@ -33,16 +33,14 @@
         <div *ngFor="let e of events">
           <button (click)="edit(e._id)">EDIT</button>
           <button (click)="remove(e._id)">REMOVE</button>
+          <button (click)="show(e._id)">SHOW</button>
           <h3> {{ e.name }} </h3>
           <h3> {{ e.active }} </h3>
           <p>______________________________________________</p>
         </div>
       </div>
   </article>
-  <div *ngIf="EventOnlyList">
-    <p>PRUEBA EventOnlyList</p>
-    {{EventOnlyList.name}}
-  </div>
+
   <article *ngIf="individualDisabled===false ">
     <div >
       <br>
