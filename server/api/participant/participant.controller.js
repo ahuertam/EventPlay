@@ -38,7 +38,8 @@ exports.updatePoints = function(req, res, next) {
      return res.status(400).json({ message: 'Specified id is not valid' });
    }
 	Participant.findByIdAndUpdate(req.params.id ,{
-		points: req.body.points
+		points: req.body.points,
+		active:req.body.state
 	},
 	(err) => {
 		if (err) {

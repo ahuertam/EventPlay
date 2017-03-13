@@ -1,29 +1,42 @@
 <div class="container">
-  <p>
-    tournament works!
-  </p>
+  <!--HERE  ClASIFICATORY-->
   <h2>Tournament Phase1</h2>
-  <button type="button" name="button" (click)="showParticipants()">Get pairings</button>
-
-  <h2>Tournament Pairings:</h2>
+  <button type="button" name="button" (click)="showParticipants()">Start Tournament</button>
+  <button type="button" name="button">Next Phase</button>
   <table>
     <tr>
       <th>Player1</th>
+      <th>Points</th>
+      <th>Has Played</th>
+      <th>Wins</th>
+      <th>Times Winned</th>
     </tr>
     <tr *ngFor="let participant of currentList; let i = index">
       <td>{{participant.name}}</td>
+      <td>{{participant.points}}</td>
+      <td *ngIf="participant.active ===true ">{{participant.active}}</td>
+      <td *ngIf="participant.active ===true ">
+        <button type="button" name="button" (click)="ShowResults(participant)">
+                {{participant.name}} WINS
+        </button>
+      </td>
+      <td *ngIf="participant.active ===false ">{{participant.active}}</td>
+      <td *ngIf="participant.active ===false ">Already Played</td>
+      <td >{{participant.wins}}</td>
     </tr>
-    <tr>
-      <th>Player2</th>
-    </tr>
-    <tr *ngFor="let participant2 of sortedList; let i = index">
-      <td>{{participant2.name}}</td>
-    </tr>
-
+    <br>
+  <tr *ngFor="let participant3 of sortedPaired; let i = index">
+    <th>Pairing </th>
+    <td *ngFor="let subItem of participant3">{{subItem.name}} </td>
+    <!--PREGUNTAR COMO DIVIDIR EL RESULTADO ENTRE 2-->
+  </tr>
   </table>
-    <!-- <h2>Tournament Phase2</h2>
+<!--HERE ENDS ClASIFICATORY-->
 
-    <h2>Tournament Pairings:</h2>
+<!--HERE SEMIFINALS-->
+    <h2>Tournament Semifinals</h2>
+    <p>Only top 4 can enter</p>
+    <h4>Tournament Pairings:</h4>
     <table>
       <tr>
         <th>Player1</th>
@@ -33,6 +46,23 @@
         <td>Marc</td>
         <td>Alex</td>
       </tr>
-    </table> -->
+    </table>
+<!--HERE  ENDS SEMIFINALS-->
+
+<!--HERE FINAL-->
+    <h2>Tournament Final</h2>
+    <p>The winners from last semifinals</p>
+    <h4>Tournament Pairings:</h4>
+    <table>
+      <tr>
+        <th>Player1</th>
+        <th>Player2</th>
+      </tr>
+      <tr>
+        <td>Marc</td>
+        <td>Alex</td>
+      </tr>
+    </table>
+<!--HERE ENDS SEMIFINALS-->
 
   </div>

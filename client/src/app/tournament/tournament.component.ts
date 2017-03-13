@@ -8,8 +8,11 @@ import { OwnedeventsService } from '../ownedevents.service';
 })
 export class TournamentComponent implements OnInit {
   @Input () currentEvent :any;
+  radio;
   currentList:any;
   sortedList:any;
+  sortedPaired:any;
+  objectUpdate:any;
   constructor(public event: OwnedeventsService) { }
 
   ngOnInit() {
@@ -31,9 +34,24 @@ export class TournamentComponent implements OnInit {
         });
     }
     pairing(array){
-      console.log(array);
-      console.log("SORTED" );
       this.sortedList=array.slice().reverse();
       console.log( this.sortedList);
+      this.sortedPaired=[array,this.sortedList];
+      console.log(this.sortedPaired);
+
     }
+  ShowResults(winner){
+    console.log("And the winner is : "+winner.name);
+    console.log("The state is: "+winner.active);
+    var objectUpdate ={
+      "points":(winner.points+100),
+      "active":winner.active=!winner.active,
+      "wins":(winner.wins+1)
+    }
+    this.event.updatePoints(winner._id,objectUpdate).subscribe((e) => {
+      console.log("Winner  Updated");
+      this.showParticipants();
+      });
+  }
+
   }
