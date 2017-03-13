@@ -68,8 +68,8 @@
         <button class="btn btn-lg btn-primary btn-block" (click)="addParticipant(individual._id)" >Add!!</button>
     </form>
 </article>
-<article class=""  *ngIf="individualDisabled===false">
-      <app-leaderboard></app-leaderboard>
-      <app-tournament></app-tournament>
+<article class=""  *ngIf="showEvent===false">
+      <app-leaderboard [currentEvent]="currentEvent"></app-leaderboard>
+      <app-tournament [currentEvent]="currentEvent"></app-tournament>
 </article>
 </div>

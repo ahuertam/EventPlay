@@ -1,28 +1,21 @@
 <div class="container">
-  <button type="button" name="button" (click)="showParticipants()">PRUEBALO</button>
+  <button type="button" name="button" (click)="showParticipants()">UPDATE LIST</button>
   <p>
     this is the leaderBoard
-    <!-- <tr ng-repeat="participant in participantsList">
-    <td>#{{$index + 1}}</td>
-    <td>{{participant.name}}</td>
-    <td>{{participant.points}}</td>
-  </tr> -->
   </p>
   <table>
     <tr>
       <th>Position</th>
-      <th>Participant</th>
+      <th>participant</th>
       <th>Points</th>
     </tr>
-    <tr>
-      <td>1</td>
-      <td>Alex</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Marc</td>
-      <td>90</td>
+    <tr *ngFor="let participant of currentList; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{participant.name}}</td>
+      <td>
+        <input type="text" name="points" #points value="{{participant.points}}">
+        <button type="button" name="button" (click)="UpdatePoints(participant._id, points.value)">UPDATE POINTS</button>
+      </td>
     </tr>
   </table>
 

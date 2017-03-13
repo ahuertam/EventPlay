@@ -3,30 +3,36 @@
     tournament works!
   </p>
   <h2>Tournament Phase1</h2>
+  <button type="button" name="button" (click)="showParticipants()">Get pairings</button>
 
   <h2>Tournament Pairings:</h2>
   <table>
     <tr>
       <th>Player1</th>
+    </tr>
+    <tr *ngFor="let participant of currentList; let i = index">
+      <td>{{participant.name}}</td>
+    </tr>
+    <tr>
       <th>Player2</th>
     </tr>
-    <tr>
-      <td>Alex</td>
-      <td>Marc</td>
+    <tr *ngFor="let participant2 of sortedList; let i = index">
+      <td>{{participant2.name}}</td>
     </tr>
-  </table>
-  <h2>Tournament Phase2</h2>
 
-  <h2>Tournament Pairings:</h2>
-  <table>
-    <tr>
-      <th>Player1</th>
-      <th>Player2</th>
-    </tr>
-    <tr>
-      <td>Marc</td>
-      <td>Alex</td>
-    </tr>
   </table>
+    <!-- <h2>Tournament Phase2</h2>
 
-</div>
+    <h2>Tournament Pairings:</h2>
+    <table>
+      <tr>
+        <th>Player1</th>
+        <th>Player2</th>
+      </tr>
+      <tr>
+        <td>Marc</td>
+        <td>Alex</td>
+      </tr>
+    </table> -->
+
+  </div>

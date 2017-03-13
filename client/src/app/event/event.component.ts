@@ -1,4 +1,4 @@
-import { Component, OnInit,EventEmitter,Input } from '@angular/core';
+import { Component, OnInit,EventEmitter } from '@angular/core';
 import { OwnedeventsService } from '../ownedevents.service';
 import { SessionService } from '../session.service';
 
@@ -11,11 +11,12 @@ import { SessionService } from '../session.service';
 export class EventComponent implements OnInit {
   events;
   user:any;
- @Input() participantsList :any;
+  currentEvent :any;
   participantsListEvent:any;
   isInputDisabled: boolean = true;
   listdisabled: boolean = true;
   individualDisabled:boolean = true;
+  showEvent: boolean =true;
   eventInfo = {
     name: '',
     description: '',
@@ -93,6 +94,14 @@ individual(id) {
 tagIndividual(){
   this.individualDisabled = !this.individualDisabled;
 }
+
+show(id){
+  this.currentEvent=id;
+  console.log(this.currentEvent);
+  this.showEvent = !this.showEvent;
+  this.listdisabled = !this.listdisabled;
+}
+
 //END Individual LIST
 
 ////////participant

@@ -55,6 +55,14 @@ addParticipant(id,obj){
       .catch(this.handleError);
   }
 
+
+  ////////////////put
+    updatePoints(participant,points) {
+      return this.http.put(`${this.BASE_URL}/api/event/participant/${participant}`, points, this.options)
+        .map((res) => res.json())
+        .catch(this.handleError);
+    }
+
 ///////////////////DELETE
   remove(id) {
     return this.http.delete(`${this.BASE_URL}/api/event/${id}`, this.options)
