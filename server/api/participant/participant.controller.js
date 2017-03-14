@@ -39,7 +39,7 @@ exports.updatePoints = function(req, res, next) {
    }
 	Participant.findByIdAndUpdate(req.params.id ,{
 		points: req.body.points,
-		active:req.body.state
+		active:req.body.active
 	},
 	(err) => {
 		if (err) {
