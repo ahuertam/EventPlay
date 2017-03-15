@@ -24,14 +24,17 @@
       <td >{{participant.wins}}</td>
     </tr>
     <br>
+  <div *ngIf="tournamentStarts ===true ">
+      <button type="button" name="button" (click)="suffleList()">More Pairings</button>
+  </div>
   <tr *ngFor="let participant3 of sortedPaired; let i = index">
     <th>Pairing </th>
     <td *ngFor="let subItem of participant3">{{subItem.name}} </td>
-    <!--PREGUNTAR COMO DIVIDIR EL RESULTADO ENTRE 2-->
+
   </tr>
   </table>
 <!--HERE ENDS ClASIFICATORY-->
-
+<div *ngIf="tournamentStarts ===true ">
 <button type="button" name="button" (click)="semifinals()">SemiFinals</button>
 <!--HERE SEMIFINALS-->
 <div class="" *ngIf="semifinalActive ===true ">
@@ -61,9 +64,18 @@
         </button></td>
       </tr>
     </table>
+    <div class="finalist" *ngIf="counter >=1">
+      <h2> First Finalist: {{finalList[0].name}}</h2>
+    </div>
+    <div class="finalist" *ngIf="counter >=2">
+      <h2> Second Finalist: {{finalList[1].name}}</h2>
+    </div>
   </div>
+</div>
 <!--HERE  ENDS SEMIFINALS-->
-<button type="button" name="button" (click)="final()">Final</button>
+<div *ngIf="counter >=2 ">
+  <button type="button" name="button" (click)="final()">Final</button>
+</div>
 <!--HERE FINAL-->
 <div *ngIf="finalActive ===true ">
     <h2>Tournament Final</h2>

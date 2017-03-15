@@ -22,12 +22,14 @@ export class TournamentComponent implements OnInit {
   semifinalActive: boolean = false;
   finalActive: boolean = false;
   tournamentEnds:boolean =false;
+  tournamentStarts:boolean =false;
   constructor(public event: OwnedeventsService) { }
 
   ngOnInit() {
   }
 
   showParticipants(){
+    this.tournamentStarts=true;
     this.counter=0;
     this.semifinalActive = false;
     this.finalActive = false;
@@ -49,6 +51,13 @@ export class TournamentComponent implements OnInit {
         this.pairing(this.sortedList);
         });
     }
+
+    shuffle(array){
+       for (let i = array.length; i; i--) {
+           let j = Math.floor(Math.random() * i);
+           [array[i - 1], array[j]] = [array[j], array[i - 1]];
+       }
+   }
     pairing(array){
       this.sortedList=array.slice().reverse();
       console.log( this.sortedList);
@@ -56,11 +65,17 @@ export class TournamentComponent implements OnInit {
       var arrayInHalf=array.slice().splice(0,halfArray);
       var sortedInHalf=this.sortedList.slice().splice(0,halfArray);
 
+      this.shuffle(arrayInHalf);
+      this.shuffle(sortedInHalf);
       this.sortedPaired=[arrayInHalf,sortedInHalf];
       console.log(this.sortedPaired);
 
-
     }
+    suffleList(){
+      this.shuffle(this.sortedPaired[0]);
+      this.shuffle(this.sortedPaired[1]);
+    }
+
   ShowResults(winner){
     console.log("And the winner is : "+winner.name);
     console.log("The state is: "+winner.active);
@@ -99,6 +114,7 @@ resetCounter(){
   this.counter=0;
 
 }
+
 finals(winner){
   (this.counter<2)?
   (this.finalList.push(winner),this.counter++,console.log("Finalists "+winner.name)) :
