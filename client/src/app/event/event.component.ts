@@ -18,6 +18,7 @@ export class EventComponent implements OnInit {
   listdisabled: boolean = true;
   individualDisabled:boolean = true;
   showEvent: boolean =true;
+  participantMessage:any;
   eventInfo = {
     name: '',
     description: '',
@@ -45,15 +46,19 @@ export class EventComponent implements OnInit {
   }
 
   toggleAll(){
-    this.isInputDisabled = !this.isInputDisabled;
-    this.listdisabled = !this.listdisabled;
+    if (this.individualDisabled ==false){this.individualDisabled = !this.individualDisabled;}
+    if (this.showEvent ==false){this.showEvent = !this.showEvent;}
+    if (this.isInputDisabled ==false){this.isInputDisabled = !this.isInputDisabled;}
+    if (this.listdisabled ==false){this.listdisabled = !this.listdisabled;}
+
   }
 ///EVENT FORM
 openForm(){
   console.log("openform")
-  if (this.listdisabled ==false){this.listdisabled = !this.listdisabled;}
-  if (this.individualDisabled ==false){this.individualDisabled = !this.individualDisabled;}
+  // if (this.listdisabled ==false){this.listdisabled = !this.listdisabled;}
+  // if (this.individualDisabled ==false){this.individualDisabled = !this.individualDisabled;}
   this.isInputDisabled = !this.isInputDisabled;
+  this.message="";
 }
   add(){
     this.event.create(this.eventInfo).subscribe((e) => console.log("Event created"));
@@ -64,8 +69,10 @@ openForm(){
 //EVENT LIST
   edit(id){
      console.log("edit");
-    if (this.listdisabled ==false){this.listdisabled = !this.listdisabled;}
+    // if (this.listdisabled ==false){this.listdisabled = !this.listdisabled;}
     this.individual(id);
+    this.participantMessage="";
+
   }
   openList(){
     this.event.getList()
@@ -73,7 +80,6 @@ openForm(){
         console.log(events);
         this.events = events;
       });
-    if (this.individualDisabled ==false){this.individualDisabled = !this.individualDisabled;}
     this.listdisabled = !this.listdisabled;
   }
 
@@ -87,7 +93,7 @@ openForm(){
   }
 //END EVENT LIST
 
-//Individual LIST
+//Individual LIST // SOLO FUNCIONA UNA VEZ
 individual(id) {
   this.event.get(id)
   .subscribe((individual) => {
@@ -125,7 +131,7 @@ openParticipantList(id){
       console.log(id);
       console.log(this.formParticipant);
         this.event.addParticipant(id,this.formParticipant).subscribe((e) => console.log("Parcicipant created"));
-
+        this.participantMessage="Parcicipant created";
     }
 
   removeParticipant(participant){

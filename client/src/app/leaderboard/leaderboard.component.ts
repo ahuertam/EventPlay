@@ -38,7 +38,11 @@ export class LeaderboardComponent implements OnInit {
 
     UpdatePoints(participant,points){
       console.log(points);
-      var Points = {"points":points}
+      var Points = {
+        "points":points,
+        "active":true,
+        "times":+0
+      }
       this.event.updatePoints(participant,Points).subscribe((e) => {
         console.log("Points  Updated");
         this.showParticipants();

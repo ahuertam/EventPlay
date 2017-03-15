@@ -1,9 +1,10 @@
 <div class="container">
-  <button type="button" name="button" (click)="showParticipants()">UPDATE LIST</button>
+  <button type="button" name="button" (click)="showParticipants()" class="btn btn-primary btn-success">
+    <span class="glyphicon glyphicon-open"></span>UPDATE LIST</button>
   <p>
-    this is the leaderBoard
+    LEADERBOARD
   </p>
-  <table>
+  <table class="table-bordered table-hover table-responsive Info">
     <tr>
       <th>Position</th>
       <th>participant</th>
@@ -14,7 +15,8 @@
       <td>{{participant.name}}</td>
       <td>
         <input type="text" name="points" #points value="{{participant.points}}">
-        <button type="button" name="button" (click)="UpdatePoints(participant._id, points.value)">UPDATE POINTS</button>
+        <button type="button" name="button" (click)="UpdatePoints(participant._id, points.value)"class="btn btn-primary btn-success">
+          <span class="glyphicon glyphicon-open"></span>UPDATE POINTS</button>
       </td>
     </tr>
   </table>

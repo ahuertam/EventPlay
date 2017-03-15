@@ -7,8 +7,7 @@ exports.createParticipant = function(req, res, next) {
 	const newParticipant = new Participant({
 		name: req.body.name,
     points:req.body.points,
-		_event : req.body.event,
-		times:req.params.times
+		_event : req.params.event,
 
 	});
 

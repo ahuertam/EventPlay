@@ -73,7 +73,7 @@ addParticipant(id,obj){
 
   removeParticipant(participant) {
     console.log(participant);
-    return this.http.delete(`${this.BASE_URL}/api/event/${participant}`, this.options)
+    return this.http.delete(`${this.BASE_URL}/api/event/participant/${participant}`, this.options)
       .map((res) => res.json());
   }
 

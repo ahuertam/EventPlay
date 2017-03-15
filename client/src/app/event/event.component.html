@@ -60,12 +60,15 @@
               <div >
                 <br>
                 <img src="{{ individual.imgUrl }}">
-                <h3> {{ individual.name }} </h3>
-                <h3> {{ individual.state }} </h3>
-                <p> {{ individual.description }} </p>
-                <ul *ngFor="let participant of participantsListEvent">
-                  <li> {{ participant.name }} <h2>{{ participant.points }} </h2>
-                    <button class="btn btn-primary btn-danger" (click)="removeParticipant(individual._id,participant._id)" >Remove!!</button>
+                <h3> Event name: {{ individual.name }} </h3>
+                <p> Description: {{ individual.description }} </p>
+                <h4>Participants List:</h4>
+                <p>______________________________________________</p>
+                <ul *ngFor="let participant of participantsListEvent" class="list-group">
+                  <li class="list-group-item active">
+                    <h4><strong>{{ participant.name }}</strong></h4>
+                    <span class="badge badge-default badge-pill">{{ participant.points }}pts</span>
+                    <button class="btn btn-primary btn-danger" (click)="removeParticipant(individual._id,participant._id)" ><strong>X</strong></button>
                   </li>
                 </ul>
                 <p>______________________________________________</p>
@@ -82,12 +85,15 @@
                   <br>
                   <button class="btn btn-lg btn-primary btn-block" (click)="addParticipant(individual._id)" >Add!!</button>
               </form>
+              <div class="message  alert-success">
+                <strong>{{participantMessage}}</strong>
+              </div>
           </article>
           <article class=""  *ngIf="showEvent===false">
                 <app-leaderboard [currentEvent]="currentEvent"></app-leaderboard>
                 <app-tournament [currentEvent]="currentEvent"></app-tournament>
           </article>
-          <button  class="btn btn-lg btn-primary btn-block" (click)="toggleAll()">Toggle All</button>
+          <button  class="btn btn-lg btn-primary btn-block" (click)="toggleAll()">Close All</button>
         </div>
       </div>
     </div>

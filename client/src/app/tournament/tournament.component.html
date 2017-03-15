@@ -3,9 +3,11 @@
     <h2>{{individual.name}}</h2>
     <img src="{{individual.imgUrl}}" alt="">
     <h2>Tournament Phase1</h2>
-    <button type="button" name="button" (click)="showParticipants()">Start Tournament</button>
+    <button type="button" name="button" (click)="showParticipants()" class="btn btn-primary btn-success">
+      <span class="glyphicon glyphicon-fire"></span>Start Tournament</button>
     <div *ngIf="tournamentStarts ===true ">
-      <button type="button" name="button" (click)="restartList()">Restart</button>
+      <button type="button" name="button" (click)="restartList()" class="btn btn-primary btn-warning">
+        <span class="glyphicon glyphicon-fast-backward"></span>Restart</button>
     </div>
     <table>
       <tr>
@@ -19,10 +21,12 @@
         <td>{{participant.points}}</td>
         <!-- <td *ngIf="participant.active ===true ">{{participant.active}}</td> -->
         <td *ngIf="participant.active ===true ">
-          <button type="button" name="button" (click)="ShowResults(participant)">
+          <button type="button" name="button" (click)="ShowResults(participant)" class="btn btn-primary btn-success">
+            <span class="glyphicon glyphicon-thumbs-up"></span>
                   {{participant.name}} WINS
           </button>
-          <button type="button" name="button" (click)="loses(participant)">
+          <button type="button" name="button" (click)="loses(participant)" class="btn btn-primary btn-danger">
+            <span class="glyphicon glyphicon-thumbs-down"></span>
                   {{participant.name}} LOSES
           </button>
         </td>
@@ -32,7 +36,8 @@
       </tr>
       <br>
     <div *ngIf="tournamentStarts ===true ">
-        <button type="button" name="button" (click)="suffleList()">More Pairings</button>
+        <button type="button" name="button" (click)="suffleList()" class="btn btn-primary btn-info">
+          <span class="glyphicon glyphicon-plus-sign"></span>More Pairings</button>
     </div>
     <tr *ngFor="let participant3 of sortedPaired; let i = index">
       <th>Pairing </th>
@@ -42,7 +47,8 @@
     </table>
   <!--HERE ENDS ClASIFICATORY-->
   <div *ngIf="tournamentStarts ===true ">
-  <button type="button" name="button" (click)="semifinals()">SemiFinals</button>
+  <button type="button" name="button" (click)="semifinals()" class="btn btn-primary btn-warning">
+    <span class="glyphicon glyphicon-forward"></span>SemiFinals</button>
   <!--HERE SEMIFINALS-->
   <div class="" *ngIf="semifinalActive ===true ">
       <h2>Tournament Semifinals</h2>
@@ -54,19 +60,23 @@
           <th>Player2</th>
         </tr>
         <tr>
-          <td>{{rankedList[0].name}}<button type="button" name="button" (click)="finals(rankedList[0])">
+          <td>{{rankedList[0].name}}<button type="button" name="button" (click)="finals(rankedList[0])" class="btn btn-primary btn-success">
+            <span class="glyphicon glyphicon-thumbs-up"></span>
                   {{rankedList[0].name}} WINS
           </button></td>
 
-          <td>{{rankedList[3].name}}<button type="button" name="button" (click)="finals(rankedList[3])">
+          <td>{{rankedList[3].name}}<button type="button" name="button" (click)="finals(rankedList[3])" class="btn btn-primary btn-success">
+            <span class="glyphicon glyphicon-thumbs-up"></span>
                   {{rankedList[3].name}} WINS
           </button></td>
         </tr>
         <tr>
-          <td>{{rankedList[1].name}}<button type="button" name="button" (click)="finals(rankedList[1])">
+          <td>{{rankedList[1].name}}<button type="button" name="button" (click)="finals(rankedList[1])" class="btn btn-primary btn-success">
+            <span class="glyphicon glyphicon-thumbs-up"></span>
                   {{rankedList[1].name}} WINS
           </button></td>
-          <td>{{rankedList[2].name}}<button type="button" name="button" (click)="finals(rankedList[2])">
+          <td>{{rankedList[2].name}}<button type="button" name="button" (click)="finals(rankedList[2])" class="btn btn-primary btn-success">
+            <span class="glyphicon glyphicon-thumbs-up"></span>
                   {{rankedList[2].name}} WINS
           </button></td>
         </tr>
@@ -81,7 +91,8 @@
   </div>
   <!--HERE  ENDS SEMIFINALS-->
   <div *ngIf="counter >=2 ">
-    <button type="button" name="button" (click)="final()">Final</button>
+    <button type="button" name="button" (click)="final()"  class="btn btn-primary btn-warning">
+      <span class="glyphicon glyphicon-star"></span>Final</button>
   </div>
   <!--HERE FINAL-->
   <div *ngIf="finalActive ===true ">
@@ -95,12 +106,14 @@
         </tr>
         <tr>
           <td>{{finalList[0].name}}
-                  <button type="button" name="button" (click)="totalWinner(finalList[0])">
+                  <button type="button" name="button" (click)="totalWinner(finalList[0])" class="btn btn-primary btn-success">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
                   {{finalList[0].name}} WINS
             </button>
           </td>
           <td>{{finalList[1].name}}
-            <button type="button" name="button" (click)="totalWinner(finalList[1])">
+            <button type="button" name="button" (click)="totalWinner(finalList[1])" class="btn btn-primary btn-success">
+              <span class="glyphicon glyphicon-thumbs-up"></span>
             {{finalList[1].name}} WINS
             </button>
           </td>
