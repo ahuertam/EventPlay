@@ -2,3 +2,43 @@
 // background: url("http://www.hlgjyl888.com/data/wallpapers/95/WDF_1385965.jpg") no-repeat center center scroll;
 
 }
+h2{
+  text-align: center;
+  font-size: 2.5em;
+  color: #fff;
+  letter-spacing: -2px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 1px #fff, 0px 0px
+  1px #fff;
+}
+h2:hover{
+  animation: blur 3s ease-out ;//infinite
+}
+@keyframes blur {
+  from {
+    text-shadow:
+
+     0px 10px 100px #7B96B8,
+     0px 10px 100px #7B96B8,
+     0px 10px 100px #7B96B8,
+     0px 10px 100px #7B96B8,
+     0px -10px 100px #7B96B8,
+     0px -10px 100px #7B96B8,
+     0px -10px 100px #7B96B8,
+     0px -10px 100px #7B96B8,
+     0px 10px 100px #7B96B8,
+     0px 10px 100px #7B96B8,
+     0px 10px 100px #7B96B8,
+      0px 0px 150px #7B96B8;
+
+  }
+}
+// 0px 0px 25px #fff,
+// 0px 0px 25px #fff,
+// 0px 0px 25px #fff,
+// 0px 0px 25px #fff,
+// 0px 0px 25px #fff,
+// 0px 0px 25px #fff,
+// 0px 0px 50px #fff,
+// 0px 0px 50px #fff;

@@ -2,8 +2,9 @@
   <div class="jumbotron" id="jumbo1">
       <div class="container container-fluid">
         <div class="jumbotron jumbo2" >
-          <button class="btn btn-lg btn-primary btn-block" (click)="openForm()">Create Event form</button>
-          <article class="" *ngIf="isInputDisabled ===false ">
+          <img class="event-form" src="http://i64.tinypic.com/20f69uo.png" (click)="openForm()" alt="">
+          <!-- <button class="btn btn-lg btn-primary btn-block" (click)="openForm()">Create Event form</button> -->
+          <div class="" *ngIf="isInputDisabled ===false ">
             <div class="row">
               <div class="col-xs-5">
                 <form class="form-event" >
@@ -29,8 +30,9 @@
                   </form>
                 </div>
               </div>
-          </article>
-          <button  class="btn btn-lg btn-primary btn-block" (click)="openList()">See Events</button>
+          </div>
+            <img class="event-list" src="http://i68.tinypic.com/3008kco.png" (click)="openList()" alt="">
+          <!-- <button  class="btn btn-lg btn-primary btn-block" (click)="openList()">See Events</button> -->
           <article class="" *ngIf="listdisabled ===false ">
               <h2> Events list </h2>
               <div *ngIf="events" >
@@ -78,6 +80,7 @@
               <app-leaderboard [currentEvent]="currentEvent"></app-leaderboard>
               <app-tournament [currentEvent]="currentEvent"></app-tournament>
         </article>
+        <button  class="btn btn-lg btn-primary btn-block" (click)="toggleAll()">Toggle All</button>
       </div>
     </div>
   </div>

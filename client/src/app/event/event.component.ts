@@ -42,6 +42,11 @@ export class EventComponent implements OnInit {
       this.session.getLoginEvetEmitter()
         .subscribe((user) => this.user=user);
   }
+
+  toggleAll(){
+    this.isInputDisabled = !this.isInputDisabled;
+    this.listdisabled = !this.listdisabled;
+  }
 ///EVENT FORM
 openForm(){
   console.log("openform")

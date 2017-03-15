@@ -1,5 +1,5 @@
 
 <div class="container" *ngIf="user">
-    <h2>Hello {{user.username}}</h2>
+    <h2>Hello {{user.username | uppercase}}</h2>
     <app-event></app-event>
 </div>
