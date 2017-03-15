@@ -2,7 +2,7 @@
 
 <div class="container" *ngIf="!user">
   <article class="login">
-
+    <!-- <img class="open-form" src="http://www.ryerson.ca/svz/projects/Access-Now/jcr:content/center/uiwcolumns/conContainer_0_0/uiwimage.img.png/1459521805394.png" alt="" (click)="openForm()"> -->
     <button class="btn btn-lg btn-primary " (click)="openForm()">Acess now!</button>
     <form class="form-signin" *ngIf="isInputDisabled ===false ">
       <!-- *ngIf="!user" -->
@@ -24,7 +24,8 @@
 
 
 <div *ngIf="user">
-  <button class="btn btn-md btn-primary btn-block" (click)="logout()"> logout </button>
+  <img  class="logout" src="http://www.clker.com/cliparts/4/8/K/S/j/6/exit-button-md.png" alt="" (click)="logout()">
+  <!-- <button class="btn btn-md btn-primary btn-block logout" (click)="logout()"> Logout </button> -->
   <!-- <h2> Welcome {{ user.username }}!! </h2> -->
 </div>
 

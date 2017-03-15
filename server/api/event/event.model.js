@@ -8,7 +8,7 @@ const eventSchema = new mongoose.Schema({
   description: { type: String, required: true },
     tag: { type: [String], required: false },
   // _creator : { type: Schema.Types.ObjectId, ref: 'User'},
-  imgUrl: { type: String, default: "https://placeholdit.imgix.net/~text?txtsize=33&txt=250%C3%97250&w=250&h=250"},
+  imgUrl: { type: String, default: "http://i63.tinypic.com/2wd69kx.png"},
   location: { type: { type: String }, coordinates: [Number] ,default:"" },
   state : {type:Boolean,default: false ,required: true},
 }, {

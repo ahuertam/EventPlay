@@ -3,6 +3,8 @@
       <div class="container container-fluid">
         <div class="jumbotron jumbo2" >
           <img class="event-form" src="http://i64.tinypic.com/20f69uo.png" (click)="openForm()" alt="">
+          <img class="event-list" src="http://i68.tinypic.com/3008kco.png" (click)="openList()" alt="">
+          <br>
           <!-- <button class="btn btn-lg btn-primary btn-block" (click)="openForm()">Create Event form</button> -->
           <div class="" *ngIf="isInputDisabled ===false ">
             <div class="row">
@@ -23,64 +25,70 @@
                     <br>
                     <label for="imgUrl" > Url Imagen</label>
                     <br>
-                    <input type="text" name="imgUrl" [(ngModel)]="eventInfo.imgUrl">
+                    <input type="text" name="imgUrl" placeholder="URL" [(ngModel)]="eventInfo.imgUrl">
                     <br>
                     <br>
                     <button class="btn btn-lg btn-primary btn-block" (click)="add()">Add!!</button>
                   </form>
+                  <div class="message  alert-success">
+                    <strong>{{message}}</strong>
+                  </div>
                 </div>
               </div>
           </div>
-            <img class="event-list" src="http://i68.tinypic.com/3008kco.png" (click)="openList()" alt="">
-          <!-- <button  class="btn btn-lg btn-primary btn-block" (click)="openList()">See Events</button> -->
-          <article class="" *ngIf="listdisabled ===false ">
-              <h2> Events list </h2>
-              <div *ngIf="events" >
-                <p>______________________________________________</p>
-                <p>{{events[0].name}}</p>
-                <div *ngFor="let e of events">
-                  <button (click)="edit(e._id)">EDIT</button>
-                  <button (click)="remove(e._id)">REMOVE</button>
-                  <button (click)="show(e._id)">SHOW</button>
-                  <h3> {{ e.name }} </h3>
-                  <h3> {{ e.active }} </h3>
-                  <p>______________________________________________</p>
-                </div>
-              </div>
-          </article>
 
-          <article *ngIf="individualDisabled===false ">
-            <div >
-              <br>
-              <img src="{{ individual.imgUrl }}">
-              <h3> {{ individual.name }} </h3>
-              <h3> {{ individual.state }} </h3>
-              <p> {{ individual.description }} </p>
-              <ul *ngFor="let participant of participantsListEvent">
-                <li> {{ participant.name }} <h2>{{ participant.points }} </h2>
-                  <button class="btn btn-lg btn-primary btn-block" (click)="removeParticipant(individual._id,participant._id)" >Remove!!</button>
-                </li>
-              </ul>
-              <p>______________________________________________</p>
-            </div>
-            <form class="form-event">
-                <h2> Add Participant </h2>
-                <label for="name" >Name</label>
+          <div class="row">
+            <!-- <button  class="btn btn-lg btn-primary btn-block" (click)="openList()">See Events</button> -->
+            <article class="" *ngIf="listdisabled ===false ">
+                <div *ngIf="events" class="container" >
+                  <div class="jumbotron jumbo2">
+                    <h2> Events list </h2>
+                    <p>______________________________________________</p>
+                    <div *ngFor="let e of events">
+                      <h3> {{ e.name }} </h3>
+                      <p> {{ e.description }} </p>
+                      <button class="btn btn-sm btn-primary"  (click)="edit(e._id)">EDIT</button>
+                      <button class="btn btn-sm btn-primary btn-danger" (click)="remove(e._id)">REMOVE</button>
+                      <button class="btn btn-sm btn-primary" (click)="show(e._id)">SHOW</button>
+                      <p>______________________________________________</p>
+                    </div>
+                  </div>
+                </div>
+            </article>
+
+            <article *ngIf="individualDisabled===false ">
+              <div >
                 <br>
-                <input type="text" name="name" [(ngModel)]="formParticipant.name"/>
-                <br>
-                <label for="points" > Points</label>
-                <br>
-                <input type="text" name="points" [(ngModel)]="formParticipant.points">
-                <br>
-                <button class="btn btn-lg btn-primary btn-block" (click)="addParticipant(individual._id)" >Add!!</button>
-            </form>
-        </article>
-        <article class=""  *ngIf="showEvent===false">
-              <app-leaderboard [currentEvent]="currentEvent"></app-leaderboard>
-              <app-tournament [currentEvent]="currentEvent"></app-tournament>
-        </article>
-        <button  class="btn btn-lg btn-primary btn-block" (click)="toggleAll()">Toggle All</button>
+                <img src="{{ individual.imgUrl }}">
+                <h3> {{ individual.name }} </h3>
+                <h3> {{ individual.state }} </h3>
+                <p> {{ individual.description }} </p>
+                <ul *ngFor="let participant of participantsListEvent">
+                  <li> {{ participant.name }} <h2>{{ participant.points }} </h2>
+                    <button class="btn btn-primary btn-danger" (click)="removeParticipant(individual._id,participant._id)" >Remove!!</button>
+                  </li>
+                </ul>
+                <p>______________________________________________</p>
+              </div>
+              <form class="form-event2">
+                  <h2> Add Participant </h2>
+                  <label for="name" >Name</label>
+                  <br>
+                  <input type="text" name="name" [(ngModel)]="formParticipant.name"/>
+                  <br>
+                  <label for="points" > Points</label>
+                  <br>
+                  <input type="text" name="points" [(ngModel)]="formParticipant.points">
+                  <br>
+                  <button class="btn btn-lg btn-primary btn-block" (click)="addParticipant(individual._id)" >Add!!</button>
+              </form>
+          </article>
+          <article class=""  *ngIf="showEvent===false">
+                <app-leaderboard [currentEvent]="currentEvent"></app-leaderboard>
+                <app-tournament [currentEvent]="currentEvent"></app-tournament>
+          </article>
+          <button  class="btn btn-lg btn-primary btn-block" (click)="toggleAll()">Toggle All</button>
+        </div>
       </div>
     </div>
   </div>

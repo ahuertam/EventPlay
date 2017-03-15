@@ -1,11 +1,18 @@
 #jumbo1{
     background: url("https://wallpaperscraft.com/image/board_black_line_texture_background_wood_55220_1920x1080.jpg") repeat center center scroll;
 }
+.message{
+  margin-left: 40%;
+margin-top: 4%;
+}
+.form-event{
+  margin-left: 40%;
+}
 .event-list ,.event-form{
   width: 20%;
   height: 20%;
-  float: left;
-margin: 4em 1em;
+  // float: left;
+margin: 4em 2em;
 line-height: 60px;
 -webkit-transition: 1s ease-in-out;
 -moz-transition: 1s ease-in-out;

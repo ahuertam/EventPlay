@@ -68,3 +68,15 @@
     display: inline-block;
     vertical-align: middle;
   }
+.logout{
+  margin-top: 2%;
+  margin-bottom: 0.5%;
+  width: 5%;
+  height: 5%;
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+        transition:         transform .8s ease-in-out
+}
+.logout:hover{
+  -webkit-transform: rotate(360deg);
+         transform: rotate(360deg);
+}

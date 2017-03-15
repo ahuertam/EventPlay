@@ -10,6 +10,7 @@ import { SessionService } from '../session.service';
 })
 export class EventComponent implements OnInit {
   events;
+  message:any;
   user:any;
   currentEvent :any;
   participantsListEvent:any;
@@ -56,6 +57,7 @@ openForm(){
 }
   add(){
     this.event.create(this.eventInfo).subscribe((e) => console.log("Event created"));
+    this.message="Event created";
   }
 /////END EVENT form
 
