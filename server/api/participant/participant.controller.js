@@ -7,7 +7,9 @@ exports.createParticipant = function(req, res, next) {
 	const newParticipant = new Participant({
 		name: req.body.name,
     points:req.body.points,
-		_event : req.params.event
+		_event : req.body.event,
+		times:req.params.times
+
 	});
 
 	newParticipant.save(function(err, participant) {
@@ -39,7 +41,8 @@ exports.updatePoints = function(req, res, next) {
    }
 	Participant.findByIdAndUpdate(req.params.id ,{
 		points: req.body.points,
-		active:req.body.active
+		active:req.body.active,
+		times:req.body.times
 	},
 	(err) => {
 		if (err) {

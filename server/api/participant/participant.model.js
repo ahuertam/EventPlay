@@ -8,7 +8,7 @@ const participantSchema = new mongoose.Schema({
   imgUrl: { type: String, default: "https://placeholdit.imgix.net/~text?txtsize=33&txt=250%C3%97250&w=250&h=250"},
   active : {type:Boolean,default: true ,required: true},
   points: { type: Number, default:0,require: true },
-  wins: { type: Number, default:0,require: true },
+  times: { type: Number, default:0,require: true },
   textComment1: { type: String, default: ""},
   textComment2: { type: String, default: ""},
   textComment3: { type: String, default: ""}

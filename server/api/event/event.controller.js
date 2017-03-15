@@ -21,6 +21,7 @@ exports.createEvent = function(req, res, next) {
 		name: req.body.name,
 		description:req.body.description,
     tokenAccess:req.body.token,
+		imgUrl:req.body.imgUrl
 		// _creator:{user}
 	});
 	newEvent.save(function(err, event) {

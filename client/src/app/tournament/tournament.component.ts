@@ -26,8 +26,15 @@ export class TournamentComponent implements OnInit {
   constructor(public event: OwnedeventsService) { }
 
   ngOnInit() {
+    this.individual(this.currentEvent);
   }
-
+  individual(id) {
+    this.event.get(id)
+    .subscribe((individual) => {
+      this.individual = individual;
+      console.log (individual.name);
+    });
+  }
   showParticipants(){
     this.tournamentStarts=true;
     this.counter=0;
@@ -72,23 +79,58 @@ export class TournamentComponent implements OnInit {
 
     }
     suffleList(){
+      for(let i=0;i<this.currentList.length;i++){
+        var objectUpdate ={
+          "points":this.currentList[i].points,
+          "active":true,
+          "times":this.currentList[i].times
+        }
+        this.event.updatePoints(this.currentList[i]._id,objectUpdate).subscribe((e) => {
+          this.showParticipants();
+          });
+      }
       this.shuffle(this.sortedPaired[0]);
       this.shuffle(this.sortedPaired[1]);
     }
+  restartList(){
+    for(let i=0;i<this.currentList.length;i++){
+      var objectUpdate ={
+        "points":0,
+        "active":true,
+        "times":0
+      }
+      this.event.updatePoints(this.currentList[i]._id,objectUpdate).subscribe((e) => {
+        console.log("Data Restarted");
+        this.showParticipants();
+        });
+    }
 
+  }
+  loses(loser){
+    var objectUpdate ={
+      "points":loser.points,
+      "active":false,
+      "times":(loser.times+1)
+    }
+    this.event.updatePoints(loser._id,objectUpdate).subscribe((e) => {
+      console.log("Loser  Updated");
+      this.showParticipants();
+      });
+  }
   ShowResults(winner){
     console.log("And the winner is : "+winner.name);
     console.log("The state is: "+winner.active);
     var objectUpdate ={
       "points":(winner.points+100),
       "active":false,
-      "wins":(winner.wins+1)
+      "times":(winner.times+1)
     }
     this.event.updatePoints(winner._id,objectUpdate).subscribe((e) => {
       console.log("Winner  Updated");
       this.showParticipants();
       });
     }
+
     sortByPoints(array){
       this.currentList = array.slice();
       this.currentList=this.currentList.sort(function(a, b) {

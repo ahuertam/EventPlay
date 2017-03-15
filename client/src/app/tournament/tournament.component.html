@@ -1,112 +1,117 @@
 <div class="container">
-  <!--HERE  ClASIFICATORY-->
-  <h2>Tournament Phase1</h2>
-  <button type="button" name="button" (click)="showParticipants()">Start Tournament</button>
-  <table>
-    <tr>
-      <th>Player1</th>
-      <th>Points</th>
-      <th>Has Played</th>
-      <th>Wins</th>
-      <th>Times Winned</th>
-    </tr>
-    <tr *ngFor="let participant of currentList; let i = index">
-      <td>{{participant.name}}</td>
-      <td>{{participant.points}}</td>
-      <td *ngIf="participant.active ===true ">{{participant.active}}</td>
-      <td *ngIf="participant.active ===true ">
-        <button type="button" name="button" (click)="ShowResults(participant)">
-                {{participant.name}} WINS
-        </button>
-      </td>
-      <td *ngIf="participant.active ===false ">{{participant.active}}</td>
-      <td *ngIf="participant.active ===false ">Already Played</td>
-      <td >{{participant.wins}}</td>
-    </tr>
-    <br>
-  <div *ngIf="tournamentStarts ===true ">
-      <button type="button" name="button" (click)="suffleList()">More Pairings</button>
-  </div>
-  <tr *ngFor="let participant3 of sortedPaired; let i = index">
-    <th>Pairing </th>
-    <td *ngFor="let subItem of participant3">{{subItem.name}} </td>
-
-  </tr>
-  </table>
-<!--HERE ENDS ClASIFICATORY-->
-<div *ngIf="tournamentStarts ===true ">
-<button type="button" name="button" (click)="semifinals()">SemiFinals</button>
-<!--HERE SEMIFINALS-->
-<div class="" *ngIf="semifinalActive ===true ">
-    <h2>Tournament Semifinals</h2>
-    <p>Only top 4 can enter</p>
-    <h4>Tournament Pairings:</h4>
-    <table >
-      <tr>
-        <th>Player1</th>
-        <th>Player2</th>
-      </tr>
-      <tr>
-        <td>{{rankedList[0].name}}<button type="button" name="button" (click)="finals(rankedList[0])">
-                {{rankedList[0].name}} WINS
-        </button></td>
-
-        <td>{{rankedList[3].name}}<button type="button" name="button" (click)="finals(rankedList[3])">
-                {{rankedList[3].name}} WINS
-        </button></td>
-      </tr>
-      <tr>
-        <td>{{rankedList[1].name}}<button type="button" name="button" (click)="finals(rankedList[1])">
-                {{rankedList[1].name}} WINS
-        </button></td>
-        <td>{{rankedList[2].name}}<button type="button" name="button" (click)="finals(rankedList[2])">
-                {{rankedList[2].name}} WINS
-        </button></td>
-      </tr>
-    </table>
-    <div class="finalist" *ngIf="counter >=1">
-      <h2> First Finalist: {{finalList[0].name}}</h2>
+    <!--HERE  ClASIFICATORY-->
+    <h2>{{individual.name}}</h2>
+    <img src="{{individual.imgUrl}}" alt="">
+    <h2>Tournament Phase1</h2>
+    <button type="button" name="button" (click)="showParticipants()">Start Tournament</button>
+    <div *ngIf="tournamentStarts ===true ">
+      <button type="button" name="button" (click)="restartList()">Restart</button>
     </div>
-    <div class="finalist" *ngIf="counter >=2">
-      <h2> Second Finalist: {{finalList[1].name}}</h2>
-    </div>
-  </div>
-</div>
-<!--HERE  ENDS SEMIFINALS-->
-<div *ngIf="counter >=2 ">
-  <button type="button" name="button" (click)="final()">Final</button>
-</div>
-<!--HERE FINAL-->
-<div *ngIf="finalActive ===true ">
-    <h2>Tournament Final</h2>
-    <p>The winners from last semifinals</p>
-    <h4>Tournament Pairings:</h4>
     <table>
       <tr>
         <th>Player1</th>
-        <th>Player2</th>
+        <th>Points</th>
+        <th>Has Played</th>
+        <th>Times Played</th>
       </tr>
-      <tr>
-        <td>{{finalList[0].name}}
-                <button type="button" name="button" (click)="totalWinner(finalList[0])">
-                {{finalList[0].name}} WINS
+      <tr *ngFor="let participant of currentList; let i = index">
+        <td>{{participant.name}}</td>
+        <td>{{participant.points}}</td>
+        <!-- <td *ngIf="participant.active ===true ">{{participant.active}}</td> -->
+        <td *ngIf="participant.active ===true ">
+          <button type="button" name="button" (click)="ShowResults(participant)">
+                  {{participant.name}} WINS
+          </button>
+          <button type="button" name="button" (click)="loses(participant)">
+                  {{participant.name}} LOSES
           </button>
         </td>
-        <td>{{finalList[1].name}}
-          <button type="button" name="button" (click)="totalWinner(finalList[1])">
-          {{finalList[1].name}} WINS
-          </button>
-        </td>
+        <!-- <td *ngIf="participant.active ===false ">{{participant.active}}</td> -->
+        <td *ngIf="participant.active ===false ">Already Played</td>
+        <td >{{participant.times}}</td>
       </tr>
+      <br>
+    <div *ngIf="tournamentStarts ===true ">
+        <button type="button" name="button" (click)="suffleList()">More Pairings</button>
+    </div>
+    <tr *ngFor="let participant3 of sortedPaired; let i = index">
+      <th>Pairing </th>
+      <td *ngFor="let subItem of participant3">{{subItem.name}} </td>
+
+    </tr>
     </table>
+  <!--HERE ENDS ClASIFICATORY-->
+  <div *ngIf="tournamentStarts ===true ">
+  <button type="button" name="button" (click)="semifinals()">SemiFinals</button>
+  <!--HERE SEMIFINALS-->
+  <div class="" *ngIf="semifinalActive ===true ">
+      <h2>Tournament Semifinals</h2>
+      <p>Only top 4 can enter</p>
+      <h4>Tournament Pairings:</h4>
+      <table >
+        <tr>
+          <th>Player1</th>
+          <th>Player2</th>
+        </tr>
+        <tr>
+          <td>{{rankedList[0].name}}<button type="button" name="button" (click)="finals(rankedList[0])">
+                  {{rankedList[0].name}} WINS
+          </button></td>
+
+          <td>{{rankedList[3].name}}<button type="button" name="button" (click)="finals(rankedList[3])">
+                  {{rankedList[3].name}} WINS
+          </button></td>
+        </tr>
+        <tr>
+          <td>{{rankedList[1].name}}<button type="button" name="button" (click)="finals(rankedList[1])">
+                  {{rankedList[1].name}} WINS
+          </button></td>
+          <td>{{rankedList[2].name}}<button type="button" name="button" (click)="finals(rankedList[2])">
+                  {{rankedList[2].name}} WINS
+          </button></td>
+        </tr>
+      </table>
+      <div class="finalist" *ngIf="counter >=1">
+        <h2> First Finalist: {{finalList[0].name}}</h2>
+      </div>
+      <div class="finalist" *ngIf="counter >=2">
+        <h2> Second Finalist: {{finalList[1].name}}</h2>
+      </div>
+    </div>
   </div>
-<!--HERE ENDS FINAL-->
-<!--HERE WINNER-->
-<div class="" *ngIf="tournamentEnds ===true "  >
-    <h2>AND THE WINNER IS :</h2>
-    <h2>{{tournamentWinner.name}}</h2>
+  <!--HERE  ENDS SEMIFINALS-->
+  <div *ngIf="counter >=2 ">
+    <button type="button" name="button" (click)="final()">Final</button>
+  </div>
+  <!--HERE FINAL-->
+  <div *ngIf="finalActive ===true ">
+      <h2>Tournament Final</h2>
+      <p>The winners from last semifinals</p>
+      <h4>Tournament Pairings:</h4>
+      <table>
+        <tr>
+          <th>Player1</th>
+          <th>Player2</th>
+        </tr>
+        <tr>
+          <td>{{finalList[0].name}}
+                  <button type="button" name="button" (click)="totalWinner(finalList[0])">
+                  {{finalList[0].name}} WINS
+            </button>
+          </td>
+          <td>{{finalList[1].name}}
+            <button type="button" name="button" (click)="totalWinner(finalList[1])">
+            {{finalList[1].name}} WINS
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  <!--HERE ENDS FINAL-->
+  <!--HERE WINNER-->
+  <div class="" *ngIf="tournamentEnds ===true "  >
+      <h2>AND THE WINNER IS :</h2>
+      <h2>{{tournamentWinner.name}}</h2>
+  </div>
+  <!--HERE ENDS WINER-->
 </div>
-<!--HERE ENDS WINER-->
-
-
-  </div>
