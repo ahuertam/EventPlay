@@ -5,17 +5,33 @@
 div {
     display: block;
 }
-img{
-  height: 400px;
-  width: auto;
+
+#cf {
+  position:relative;
+  height:50px;
+  width:500px;
+  margin:0 auto;
+}
+
+#cf img {
+  position:absolute;
+  left:0;
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+
+#cf img.top:hover {
+  opacity:0;
 }
 .header{
   display: table;
   position: relative;
-  width: 100%;
+  width: 90%;
   height: 100%;
   //i68.tinypic.com/zu051k.jpg //[IMG][/IMG]http://i65.tinypic.com/wu2r6a.png
-  background: url("http://i66.tinypic.com/2ynntad.jpg") no-repeat center center scroll;
+  background: url("http://i66.tinypic.com/2ynntad.jpg") no-repeat   scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: 99%;
