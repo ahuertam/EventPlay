@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -7,6 +8,7 @@ const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
 const cors = require('cors');
+
 //Session control
 const authController  = require("./api/user/index");
 const session         = require("express-session");
@@ -31,9 +33,8 @@ var corsOptions = {
 };
 app.use(cors(corsOptions));
 
-
-mongoose.connect('mongodb://localhost:27017/ihfinalproyect');
-
+mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect('mongodb://localhost:27017/ihfinalproyect');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
