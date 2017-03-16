@@ -19,6 +19,7 @@ export class EventComponent implements OnInit {
   individualDisabled:boolean = true;
   showEvent: boolean =true;
   participantMessage:any;
+  individualEvent:any;
   eventInfo = {
     name: '',
     description: '',
@@ -93,11 +94,11 @@ openForm(){
   }
 //END EVENT LIST
 
-//Individual LIST // SOLO FUNCIONA UNA VEZ
+//Individual LIST 
 individual(id) {
   this.event.get(id)
-  .subscribe((individual) => {
-    this.individual = individual;
+  .subscribe((individualEvent) => {
+    this.individualEvent = individualEvent;
     this.tagIndividual();
     this.event.getAllinscriptions(id)
   });

@@ -59,16 +59,17 @@
             <article *ngIf="individualDisabled===false ">
               <div >
                 <br>
-                <img src="{{ individual.imgUrl }}">
-                <h3> Event name: {{ individual.name }} </h3>
-                <p> Description: {{ individual.description }} </p>
+                <img src="{{ individualEvent.imgUrl }}">
+
+                <h3> Event name: {{ individualEvent.name }} </h3>
+                <p> Description: {{ individualEvent.description }} </p>
                 <h4>Participants List:</h4>
                 <p>______________________________________________</p>
                 <ul *ngFor="let participant of participantsListEvent" class="list-group">
                   <li class="list-group-item active">
                     <h4><strong>{{ participant.name }}</strong></h4>
                     <span class="badge badge-default badge-pill">{{ participant.points }}pts</span>
-                    <button class="btn btn-primary btn-danger" (click)="removeParticipant(individual._id,participant._id)" ><strong>X</strong></button>
+                    <button class="btn btn-primary btn-danger" (click)="removeParticipant(individualEvent._id,participant._id)" ><strong>X</strong></button>
                   </li>
                 </ul>
                 <p>______________________________________________</p>
@@ -83,7 +84,7 @@
                   <br>
                   <input type="text" name="points" [(ngModel)]="formParticipant.points">
                   <br>
-                  <button class="btn btn-lg btn-primary btn-block" (click)="addParticipant(individual._id)" >Add!!</button>
+                  <button class="btn btn-lg btn-primary btn-block" (click)="addParticipant(individualEvent._id)" >Add!!</button>
               </form>
               <div class="message  alert-success">
                 <strong>{{participantMessage}}</strong>
