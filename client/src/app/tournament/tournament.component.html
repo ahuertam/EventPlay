@@ -1,4 +1,5 @@
 <div class="container">
+  <div class="jumbotron">
     <!--HERE  ClASIFICATORY-->
     <h2>{{individual.name}}</h2>
     <img src="{{individual.imgUrl}}" alt="">
@@ -9,9 +10,9 @@
       <button type="button" name="button" (click)="restartList()" class="btn btn-primary btn-warning">
         <span class="glyphicon glyphicon-fast-backward"></span>Restart</button>
     </div>
-    <table class="table-bordered table-hover table-responsive Info">
+    <table class="table-bordered table-hover table-responsive Info floatleft">
       <tr>
-        <th>Player1</th>
+        <th>Player</th>
         <th>Points</th>
         <th>Has Played</th>
         <th>Times Played</th>
@@ -23,108 +24,104 @@
         <td *ngIf="participant.active ===true ">
           <button type="button" name="button" (click)="ShowResults(participant)" class="btn btn-primary btn-success">
             <span class="glyphicon glyphicon-thumbs-up"></span>
-                  {{participant.name}} WINS
+                   WINS
           </button>
           <button type="button" name="button" (click)="loses(participant)" class="btn btn-primary btn-danger">
             <span class="glyphicon glyphicon-thumbs-down"></span>
-                  {{participant.name}} LOSES
+                   LOSES
           </button>
         </td>
         <!-- <td *ngIf="participant.active ===false ">{{participant.active}}</td> -->
         <td *ngIf="participant.active ===false ">Already Played</td>
         <td >{{participant.times}}</td>
       </tr>
+      </table >
       <br>
-    <div *ngIf="tournamentStarts ===true ">
-        <button type="button" name="button" (click)="suffleList()" class="btn btn-primary btn-info">
-          <span class="glyphicon glyphicon-plus-sign"></span>More Pairings</button>
-    </div>
-    <tr *ngFor="let participant3 of sortedPaired; let i = index">
-      <th>Pairing </th>
-      <td *ngFor="let subItem of participant3">{{subItem.name}} </td>
-
-    </tr>
-    </table>
-  <!--HERE ENDS ClASIFICATORY-->
+    <table class="table-bordered table-hover table-responsive Info">
+      <tr *ngFor="let participant3 of sortedPaired; let i = index">
+        <th>Pairing </th>
+          <td *ngFor="let subItem of participant3">{{subItem.name}} </td>
+          <img class="versus2" src="http://queensolis.ucoz.net/_pu/0/25334757.png" alt="">
+      </tr>
+    </table >
   <div *ngIf="tournamentStarts ===true ">
-  <button type="button" name="button" (click)="semifinals()" class="btn btn-primary btn-warning">
-    <span class="glyphicon glyphicon-forward"></span>SemiFinals</button>
-  <!--HERE SEMIFINALS-->
-  <div class="" *ngIf="semifinalActive ===true ">
-      <h2>Tournament Semifinals</h2>
-      <p>Only top 4 can enter</p>
-      <h4>Tournament Pairings:</h4>
-      <table class="table-bordered table-hover table-responsive Info">
-        <tr>
-          <th>Player1</th>
-          <th>Player2</th>
-        </tr>
-        <tr>
-          <td>{{rankedList[0].name}}<button type="button" name="button" (click)="finals(rankedList[0])" class="btn btn-primary btn-success">
-            <span class="glyphicon glyphicon-thumbs-up"></span>
-                  {{rankedList[0].name}} WINS
-          </button></td>
+      <button type="button" name="button" (click)="suffleList()" class="btn btn-primary btn-info">
+        <span class="glyphicon glyphicon-plus-sign"></span>More Pairings</button>
+  </div>
 
-          <td>{{rankedList[3].name}}<button type="button" name="button" (click)="finals(rankedList[3])" class="btn btn-primary btn-success">
-            <span class="glyphicon glyphicon-thumbs-up"></span>
-                  {{rankedList[3].name}} WINS
-          </button></td>
-        </tr>
-        <tr>
-          <td>{{rankedList[1].name}}<button type="button" name="button" (click)="finals(rankedList[1])" class="btn btn-primary btn-success">
-            <span class="glyphicon glyphicon-thumbs-up"></span>
-                  {{rankedList[1].name}} WINS
-          </button></td>
-          <td>{{rankedList[2].name}}<button type="button" name="button" (click)="finals(rankedList[2])" class="btn btn-primary btn-success">
-            <span class="glyphicon glyphicon-thumbs-up"></span>
-                  {{rankedList[2].name}} WINS
-          </button></td>
-        </tr>
-      </table>
-      <div class="finalist" *ngIf="counter >=1">
-        <h2> First Finalist: {{finalList[0].name}}</h2>
-      </div>
-      <div class="finalist" *ngIf="counter >=2">
-        <h2> Second Finalist: {{finalList[1].name}}</h2>
+</div><!--ENDS Fist jumbotron-->
+  <div class="jumbotron">
+    <!--HERE ENDS ClASIFICATORY-->
+    <div *ngIf="tournamentStarts ===true ">
+    <button type="button" name="button" (click)="semifinals()" class="btn btn-primary btn-warning">
+      <br>
+      <span class="glyphicon glyphicon-forward"></span>SemiFinals</button>
+      <div clas="clear"></div>
+    <!--HERE SEMIFINALS-->
+    <div class="" *ngIf="semifinalActive ===true ">
+        <h2>Tournament Semifinals</h2>
+        <p>Only top 4 can enter</p>
+        <h4>Tournament Pairings:</h4>
+        <div class="semifinal-Encounter">
+          <button type="button" name="button" (click)="finals(rankedList[0])" class="btn btn-primary btn-success final">
+            <h2>{{rankedList[0].name}}</h2>
+          </button>
+          <img class="versus" src="http://queensolis.ucoz.net/_pu/0/25334757.png" alt="">
+          <button type="button" name="button" (click)="finals(rankedList[3])" class="btn btn-primary btn-success final">
+            <h2>{{rankedList[3].name}}</h2>
+          </button>
+        </div>
+        <div class="finalist" *ngIf="counter >=1">
+          <h2> First Finalist: {{finalList[0].name}}</h2>
+            <img class="finalist-img" src="http://www.carsawards.co.za/img/2015/finalist-logo.png" alt="">
+          <br>
+        </div>
+        <div class="semifinal-Encounter">
+          <button type="button" name="button" (click)="finals(rankedList[1])" class="btn btn-primary btn-success final">
+            <h2>{{rankedList[1].name}}</h2>
+          </button>
+          <img class="versus" src="http://queensolis.ucoz.net/_pu/0/25334757.png" alt="">
+          <button type="button" name="button" (click)="finals(rankedList[2])" class="btn btn-primary btn-success final">
+            <h2>{{rankedList[2].name}}</h2>
+          </button>
+        </div>
+        <br>
+        <div class="finalist" *ngIf="counter >=2">
+          <h2> Second Finalist: {{finalList[1].name}}</h2>
+            <img class="finalist-img" src="http://www.carsawards.co.za/img/2015/finalist-logo.png" alt="">
+          <br>
+        </div>
       </div>
     </div>
-  </div>
-  <!--HERE  ENDS SEMIFINALS-->
-  <div *ngIf="counter >=2 ">
-    <button type="button" name="button" (click)="final()"  class="btn btn-primary btn-warning">
-      <span class="glyphicon glyphicon-star"></span>Final</button>
-  </div>
-  <!--HERE FINAL-->
-  <div *ngIf="finalActive ===true ">
-      <h2>Tournament Final</h2>
-      <p>The winners from last semifinals</p>
-      <h4>Tournament Pairings:</h4>
-      <table class="table-bordered table-hover table-responsive Info">
-        <tr>
-          <th>Player1</th>
-          <th>Player2</th>
-        </tr>
-        <tr>
-          <td>{{finalList[0].name}}
-                  <button type="button" name="button" (click)="totalWinner(finalList[0])" class="btn btn-primary btn-success">
-                    <span class="glyphicon glyphicon-thumbs-up"></span>
-                  {{finalList[0].name}} WINS
-            </button>
-          </td>
-          <td>{{finalList[1].name}}
-            <button type="button" name="button" (click)="totalWinner(finalList[1])" class="btn btn-primary btn-success">
-              <span class="glyphicon glyphicon-thumbs-up"></span>
-            {{finalList[1].name}} WINS
-            </button>
-          </td>
-        </tr>
-      </table>
+    <!--HERE  ENDS SEMIFINALS-->
+      <div *ngIf="counter >=2 ">
+        <button type="button" name="button" (click)="final()"  class="btn btn-primary btn-warning">
+          <span class="glyphicon glyphicon-star"></span>Final</button>
+      </div>
+      <!--HERE FINAL-->
+      <div class="jumbotron">
+        <div class="final-encounter">
+          <div *ngIf="finalActive ===true ">
+              <h2>Tournament Final encounter</h2>
+                <button type="button" name="button" (click)="totalWinner(finalList[0])" class="btn btn-primary btn-success final">
+                  <h2>{{finalList[0].name}}</h2>
+                </button>
+              <img class="versus" src="http://queensolis.ucoz.net/_pu/0/25334757.png" alt="">
+              <button type="button" name="button" (click)="totalWinner(finalList[1])" class="btn btn-primary btn-success final">
+                <h2>{{finalList[1].name}}</h2>
+              </button>
+            </div>
+          </div>
+        </div>
+      <!--HERE ENDS FINAL-->
+      <!--HERE WINNER-->
+    <!-- <div clas="clear"></div> -->
+    <br>
+    <div class="" *ngIf="tournamentEnds ===true "  >
+        <div class="winner-mark">
+          <h2 id="winnerTag">{{tournamentWinner.name}}</h2>
+        </div>
     </div>
-  <!--HERE ENDS FINAL-->
-  <!--HERE WINNER-->
-  <div class="" *ngIf="tournamentEnds ===true "  >
-      <h2>AND THE WINNER IS :</h2>
-      <h2>{{tournamentWinner.name}}</h2>
-  </div>
+  </div><!--ENDS Second jumbotron-->
   <!--HERE ENDS WINER-->
 </div>

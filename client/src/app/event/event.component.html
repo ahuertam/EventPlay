@@ -39,24 +39,24 @@
 
           <div class="row">
             <!-- <button  class="btn btn-lg btn-primary btn-block" (click)="openList()">See Events</button> -->
-            <article class="" *ngIf="listdisabled ===false ">
+            <div class="" *ngIf="listdisabled ===false ">
                 <div *ngIf="events" class="container" >
                   <div class="jumbotron jumbo2">
                     <h2> Events list </h2>
-                    <p>______________________________________________</p>
+                    <hr>
                     <div *ngFor="let e of events">
                       <h3> {{ e.name }} </h3>
                       <p> {{ e.description }} </p>
                       <button class="btn btn-sm btn-primary"  (click)="edit(e._id)">EDIT</button>
                       <button class="btn btn-sm btn-primary btn-danger" (click)="remove(e._id)">REMOVE</button>
                       <button class="btn btn-sm btn-primary" (click)="show(e._id)">SHOW</button>
-                      <p>______________________________________________</p>
+                      <hr>
                     </div>
                   </div>
                 </div>
-            </article>
+            </div>
 
-            <article *ngIf="individualDisabled===false ">
+            <div *ngIf="individualDisabled===false ">
               <div >
                 <br>
                 <img src="{{ individualEvent.imgUrl }}">
@@ -64,15 +64,17 @@
                 <h3> Event name: {{ individualEvent.name }} </h3>
                 <p> Description: {{ individualEvent.description }} </p>
                 <h4>Participants List:</h4>
-                <p>______________________________________________</p>
-                <ul *ngFor="let participant of participantsListEvent" class="list-group">
+                <hr>
+                <ul *ngFor="let participant of participantsListEvent" class="list-group floatleft">
                   <li class="list-group-item active">
-                    <h4><strong>{{ participant.name }}</strong></h4>
-                    <span class="badge badge-default badge-pill">{{ participant.points }}pts</span>
-                    <button class="btn btn-primary btn-danger" (click)="removeParticipant(individualEvent._id,participant._id)" ><strong>X</strong></button>
+                    <h4><strong>{{ participant.name }}</strong>
+                      <span class="badge badge-default badge-pill">{{ participant.points }}pts</span>
+                      <button class="btn btn-primary btn-danger participantSort" (click)="removeParticipant(individualEvent._id,participant._id)" ><strong>X</strong></button>
+                    </h4>
                   </li>
                 </ul>
-                <p>______________________________________________</p>
+                <div class="clear"></div>
+                <hr>
               </div>
               <form class="form-event2">
                   <h2> Add Participant </h2>
@@ -89,11 +91,11 @@
               <div class="message  alert-success">
                 <strong>{{participantMessage}}</strong>
               </div>
-          </article>
-          <article class=""  *ngIf="showEvent===false">
+          </div>
+          <div class=""  *ngIf="showEvent===false">
                 <app-leaderboard [currentEvent]="currentEvent"></app-leaderboard>
                 <app-tournament [currentEvent]="currentEvent"></app-tournament>
-          </article>
+          </div>
           <button  class="btn btn-lg btn-primary btn-block" (click)="toggleAll()">Close All</button>
         </div>
       </div>
