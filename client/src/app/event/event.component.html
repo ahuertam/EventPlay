@@ -46,7 +46,7 @@
                     <hr>
                     <div *ngFor="let e of events">
                       <h3> {{ e.name }} </h3>
-                      <p> {{ e.description }} </p>
+                      <div class="layered-paper"> {{ e.description }} </div>
                       <button class="btn btn-sm btn-primary"  (click)="edit(e._id)">EDIT</button>
                       <button class="btn btn-sm btn-primary btn-danger" (click)="remove(e._id)">REMOVE</button>
                       <button class="btn btn-sm btn-primary" (click)="show(e._id)">SHOW</button>
