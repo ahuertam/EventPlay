@@ -26,6 +26,7 @@ div {
   opacity:0;
 }
 .header{
+  border-radius: 25px;
   display: table;
   position: relative;
   width: 90%;
@@ -34,7 +35,7 @@ div {
   background: url("http://i66.tinypic.com/2ynntad.jpg") no-repeat   scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
-  background-size: 99%;
+  background-size: 100%;
   color: #fff;
       text-align: center;
       text-shadow: 0 1px 3px rgba(0,0,0,.5);
