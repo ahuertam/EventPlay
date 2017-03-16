@@ -3,12 +3,13 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Rx';
+import { environment } from '../environments/environment';
 
 // import { Event } from '../../../server/api/event/event.model';
 
 @Injectable()
 export class OwnedeventsService {
-  BASE_URL: string = 'http://localhost:3000';
+  BASE_URL: string = environment.apiUrl;
   options: Object = {withCredentials:true};
   EventListEmitter =new EventEmitter();
   ParticipantListEmitter =new EventEmitter();
