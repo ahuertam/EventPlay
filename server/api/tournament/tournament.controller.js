@@ -18,8 +18,6 @@ exports.createTournament = function(req, res, next) {
 	});
 };
 exports.listTournament = function(req, res, next) {
-	console.log("hola");
-	console.log(req.body);
 	Tournament.find({_event: req.params.event})
     .exec((err, tournaments) => {
       if (err) {

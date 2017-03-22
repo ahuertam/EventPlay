@@ -32,7 +32,6 @@ export class TournamentComponent implements OnInit {
     this.event.get(id)
     .subscribe((individual) => {
       this.individual = individual;
-      console.log (individual.name);
     });
   }
   showParticipants(){
@@ -44,7 +43,6 @@ export class TournamentComponent implements OnInit {
     this.winner=[];
     this.tournamentWinner={};
     this.tournamentEnds =false;
-    console.log(this.currentEvent);
     this.openParticipantList(this.currentEvent);
   }
 
@@ -52,7 +50,6 @@ export class TournamentComponent implements OnInit {
     this.event.getAllinscriptions(id)
       .subscribe(
         (participantsListEvent) => {
-          console.log(participantsListEvent);
         this.currentList = participantsListEvent;
         this.sortedList = participantsListEvent;
         this.pairing(this.sortedList);
@@ -67,7 +64,6 @@ export class TournamentComponent implements OnInit {
    }
     pairing(array){
       this.sortedList=array.slice().reverse();
-      console.log( this.sortedList);
       var halfArray=Math.ceil(array.length /2);
       var arrayInHalf=array.slice().splice(0,halfArray);
       var sortedInHalf=this.sortedList.slice().splice(0,halfArray);
@@ -75,7 +71,6 @@ export class TournamentComponent implements OnInit {
       this.shuffle(arrayInHalf);
       this.shuffle(sortedInHalf);
       this.sortedPaired=[arrayInHalf,sortedInHalf];
-      console.log(this.sortedPaired);
 
     }
     suffleList(){
@@ -100,7 +95,6 @@ export class TournamentComponent implements OnInit {
         "times":0
       }
       this.event.updatePoints(this.currentList[i]._id,objectUpdate).subscribe((e) => {
-        console.log("Data Restarted");
         this.showParticipants();
         });
     }
@@ -113,20 +107,16 @@ export class TournamentComponent implements OnInit {
       "times":(loser.times+1)
     }
     this.event.updatePoints(loser._id,objectUpdate).subscribe((e) => {
-      console.log("Loser  Updated");
       this.showParticipants();
       });
   }
   ShowResults(winner){
-    console.log("And the winner is : "+winner.name);
-    console.log("The state is: "+winner.active);
     var objectUpdate ={
       "points":(winner.points+100),
       "active":false,
       "times":(winner.times+1)
     }
     this.event.updatePoints(winner._id,objectUpdate).subscribe((e) => {
-      console.log("Winner  Updated");
       this.showParticipants();
       });
     }
@@ -142,9 +132,7 @@ export class TournamentComponent implements OnInit {
       this.event.getAllinscriptions(this.currentEvent)
         .subscribe(
           (participantsListEvent) => {
-            console.log(participantsListEvent);
           this.rankedList = participantsListEvent.slice();
-          console.log(this.rankedList );
           this.rankedList=this.rankedList.sort(function(a, b) {
             return parseFloat(b.points) - parseFloat(a.points);
               });
@@ -159,20 +147,16 @@ resetCounter(){
 
 finals(winner){
   (this.counter<2)?
-  (this.finalList.push(winner),this.counter++,console.log("Finalists "+winner.name)) :
-  console.log(" All finalist are already added");
-  console.log(this.finalList);
+  (this.finalList.push(winner),this.counter++) :
+  " All finalist are already added";
 }
 
 final(){
-    console.log (this.finalList);
     this.finalActive = !this.finalActive;
     }
 
 totalWinner(finalWinner){
   this.tournamentWinner=finalWinner;
-  console.log("WINNER OF ALL:" );
-  console.log(this.tournamentWinner.name);
   this.tournamentEnds =true;
 }
 

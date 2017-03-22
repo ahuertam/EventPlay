@@ -33,8 +33,8 @@ var corsOptions = {
 };
 app.use(cors(corsOptions));
 
-mongoose.connect(process.env.MONGODB_URI);
-// mongoose.connect('mongodb://localhost:27017/ihfinalproyect');
+// mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect('mongodb://localhost:27017/ihfinalproyect');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

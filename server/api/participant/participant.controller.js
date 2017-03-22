@@ -13,7 +13,7 @@ exports.createParticipant = function(req, res, next) {
 
 	newParticipant.save(function(err, participant) {
 		if(err) {
-            console.log(err);
+            // console.log(err);
 			return res.send(500);
 		}
 			return res.send(200);

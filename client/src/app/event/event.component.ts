@@ -39,7 +39,6 @@ export class EventComponent implements OnInit {
   ngOnInit() {
     this.event.getList()
       .subscribe((events) => {
-        console.log(events);
         this.events = events;
       });
       this.session.getLoginEvetEmitter()
@@ -55,22 +54,17 @@ export class EventComponent implements OnInit {
   }
 ///EVENT FORM
 openForm(){
-  console.log("openform")
-  // if (this.listdisabled ==false){this.listdisabled = !this.listdisabled;}
-  // if (this.individualDisabled ==false){this.individualDisabled = !this.individualDisabled;}
   this.isInputDisabled = !this.isInputDisabled;
   this.message="";
 }
   add(){
-    this.event.create(this.eventInfo).subscribe((e) => console.log("Event created"));
+    this.event.create(this.eventInfo).subscribe((e) =>  "Event created");
     this.message="Event created";
   }
 /////END EVENT form
 
 //EVENT LIST
   edit(id){
-     console.log("edit");
-    // if (this.listdisabled ==false){this.listdisabled = !this.listdisabled;}
     this.individual(id);
     this.participantMessage="";
 
@@ -78,7 +72,6 @@ openForm(){
   openList(){
     this.event.getList()
       .subscribe((events) => {
-        console.log(events);
         this.events = events;
       });
     this.listdisabled = !this.listdisabled;
@@ -87,14 +80,13 @@ openForm(){
   remove(id){
     this.event.getList()
       .subscribe((events) => {
-        console.log(events);
         this.events = events;
       });
-    this.event.remove(id).subscribe((e) => console.log("Event Erased"));
+    this.event.remove(id).subscribe((e) => "Event Erased");
   }
 //END EVENT LIST
 
-//Individual LIST 
+//Individual LIST
 individual(id) {
   this.event.get(id)
   .subscribe((individualEvent) => {
@@ -111,7 +103,6 @@ tagIndividual(){
 
 show(id){
   this.currentEvent=id;
-  console.log(this.currentEvent);
   this.showEvent = !this.showEvent;
   this.listdisabled = !this.listdisabled;
 }
@@ -123,21 +114,17 @@ openParticipantList(id){
   this.event.getAllinscriptions(id)
     .subscribe(
       (participantsListEvent) => {
-        console.log(participantsListEvent);
       this.participantsListEvent = participantsListEvent;
       });
   }
 
     addParticipant(id){
-      console.log(id);
-      console.log(this.formParticipant);
-        this.event.addParticipant(id,this.formParticipant).subscribe((e) => console.log("Parcicipant created"));
+        this.event.addParticipant(id,this.formParticipant).subscribe((e) => "Parcicipant created");
         this.participantMessage="Parcicipant created";
     }
 
   removeParticipant(participant){
-    console.log(participant);
-    this.event.removeParticipant(participant).subscribe((e) => console.log("participant Erased"));
+    this.event.removeParticipant(participant).subscribe((e) => "participant Erased");
   }
 
 }

@@ -28,7 +28,6 @@ export class OwnedeventsService {
   }
 
   get(id) {
-    console.log("service ID" + id);
     return this.http.get(`${this.BASE_URL}/api/event/${id}`, this.options)
     .map((res) => res.json());
     // .map((EventAlone) => {this.EventListEmitter.emit(EventAlone);return EventAlone});
@@ -73,7 +72,6 @@ addParticipant(id,obj){
   }
 
   removeParticipant(participant) {
-    console.log(participant);
     return this.http.delete(`${this.BASE_URL}/api/event/participant/${participant}`, this.options)
       .map((res) => res.json());
   }

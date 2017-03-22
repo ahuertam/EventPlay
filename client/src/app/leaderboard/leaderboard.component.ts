@@ -15,7 +15,6 @@ export class LeaderboardComponent implements OnInit {
   }
 
   showParticipants(){
-    console.log(this.currentEvent);
     this.openParticipantList(this.currentEvent);
   }
 
@@ -23,28 +22,23 @@ export class LeaderboardComponent implements OnInit {
     this.event.getAllinscriptions(id)
       .subscribe(
         (participantsListEvent) => {
-          console.log(participantsListEvent);
           this.sortByPoints(participantsListEvent);
         });
     }
     sortByPoints(array){
       this.currentList = array.slice();
-      console.log("array");
       this.currentList=this.currentList.sort(function(a, b) {
         return parseFloat(b.points) - parseFloat(a.points);
       });
-      console.log(this.currentList);
     }
 
     UpdatePoints(participant,points){
-      console.log(points);
       var Points = {
         "points":points,
         "active":true,
         "times":+0
       }
-      this.event.updatePoints(participant,Points).subscribe((e) => {
-        console.log("Points  Updated");
+      this.event.updatePoints(participant,Points).subscribe((e) => {;
         this.showParticipants();
         });
     }

@@ -15,8 +15,6 @@ exports.listEvent = function(req, res, next) {
 };
 
 exports.createEvent = function(req, res, next) {
-	// console.log(req.body);
-	console.log("esto es create event");
 	const newEvent = new eventModel({
 		name: req.body.name,
 		description:req.body.description,
@@ -26,7 +24,7 @@ exports.createEvent = function(req, res, next) {
 	});
 	newEvent.save(function(err, event) {
 		if(err) {
-            console.log(err);
+            // console.log(err);
 			return res.send(500);
 		}
 		return res.send(200);

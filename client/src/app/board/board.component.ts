@@ -14,14 +14,6 @@ export class BoardComponent implements OnInit {
      }
 
   ngOnInit() {
-    // this.session
-    // .isLoggedIn()
-    // .subscribe((user) => {
-    //   this.user = user;
-    //   console.log("Ready");
-    //   console.log(user);
-    // });
-
   }
 
 }
